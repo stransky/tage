@@ -1,0 +1,972 @@
+- bunch -> 
+
+- udelat nejakou rectangle texturu co se na to navlikne (zelena s nejakym stredem tmavsim
+  + treba do toho diry a tak)
+  - jak vyresit kombinaci vice generatoru(tim include)?
+
+- leaf -> udelat to jako prusecik bezierove krivky (jako bunch)
+  + pak to vyplnit carama (misto toho kamene?)
+
+- bunch - rotace segmentu zavisi na jeho delce!!
+
+modificator_line::line_emit_width -> pokud je to zaporne (dx = -8, dy = 8) 
+  -> spadne to!! -> musi byt widht vetsi nez 1
+
+- dokumnetace -> nadefinovat verbatim font? pro ty vypisy ze zdrojaku?
+- udelat konecne tu travu! 
+  - generovani vice meshu 
+  - podlozka a na tom kusy travy
+
+color_table:
+  - udelat vice tech color tabulek (neomezene?)
+  - pridat funkci lookup co bude v tech color tabulkach vyhledavat  
+
+- funkce -> optimalizace meshe (zmenseni poctu trojuhelniku)
+  -> prekopirovat z berusek
+
+- UHV barvy? 
+implementovat bloky -> {}
+
+- tutorial - nejaky teren
+  - kameny/oblazky do geometrickeho surfacu?
+
+-> cara -> bezierova krivka!! -> pridat
+
+Rozsireni jazyka:
+  - if/else??
+  - funkce (moznost definovat)
+  - konstanty -> daji se pouzit jako parametry -> velikosti modifikatoru?
+    -> pred kazdym modifikatorem proparsovat pravou stranu parserem?? (moznost pouzit aritmetiku)
+
+Jen pro cteni:  
+  - vyhledani v look-up tabulce
+  
+- udelat utes jako je v UFO??
+- filtr do dokumentace!!
+
+- udelat perfektni travu a blato a pak michat?
+
+- TODO -> udelat jednotnou sablonu pro masku/heightmapu/bitmapu?
+- targety -> jak to je s maskama??
+- preprocesor CPP!!
+
+- target bitmap
+- jak to ze to "ddddd" nehlasi ze to je blby radek??
+
+- je tam pomichane kdyz udelam heighmap load a pak aplikuju!!??
+
+- priklady - upravit ty priklady bunchu!! (vyska)
+
+- naroubovat tam konecne tu travu a vetsi objekty (kameny&spol)
+
+Udelat:
+  - rovne plochy trava
+  - kolme skala
+    - smichat 2 textury podle skolu tech stran?
+      - 2 textury pod sebou
+      - maska generovana podle sklonu? (podle normaloveho vektoru?)
+      - osvetleni (heighmap) udelat jako michaci faktor masky!!      
+
+- optimalizace vertexu? Jako v beruskach!!
+
+- lepsit bunch - aby to nedelalo to blby vyplnovani kdyz to je na hrane!!
+ 
+- udelat aby koordinaty mohli byt i zaporny!! (velikosti)
+- koordinaty:
+  - MAX_X, MAX_Y, MAX_Z -> maximalni velikost (toho modifikatoru)
+
+- Anti-aliasing - udelat jako scale? (udelat 2x tak veliky a udelat scale)
+  - jako parametr texture-target??
+  - scale pred tim rozrezanim?
+
+Udelat pro publikaci:
+- dokumentace
+  - seznam vsech modifikatoru a parametru
+  - prirucka na pouziti
+  - tutorial
+
+udelat nejakou specifikaci jak popis nalezi k tomu generatoru!!
+
+Zaklad (nejdulezitejsi):
+  - trava na hline (2000 x 2000)
+  - separovanej generator? r/g/b - zadat moznou odchylku od stredu? (interval))
+  - absolutne nahodne barvy??
+
+TODO:
+- fotodokumentace
+  - nafotit ruzny tereny a zkusit emulaci tim generatorem??
+
+cary
+  - nemam implementovanej end!!! (u parametru)
+    - ruzna tloustka + randomizace hloubky?
+
+heightmapy
+  - pozice globalniho svetla (pro heightmap-intenzitu)
+  - zjednoduseni osvetleni
+    - intenzita
+  - automaticka normalizace?
+  
+bunch
+  - i opacne hloubky? (delat prohlubne misto vypouklin)
+    - jako reverzni argument?
+  - pokud to presahne tu oblast, rozsirit ty souradnice??
+  - neco jako kostky - rovne a pak prudce dolu
+
+net 
+  - zadat co vsechno se ma vyplnovat:
+    - obvod (cary)
+    - vnitrek
+    - body?
+  
+- blendovana mrizka (v tech uzlech jsou ruzne hloubky - interpolace)
+  - vzor kostek / kamenu
+    - nevyplnene poly?
+  - ruzne boule a podobne?
+    - bump-mapa!! z mirne zvlneneho fraktalu (boule?)
+
+- filtr to parametru -> moznost modifikace tech parametru
+
+Perlin - typy interpolace (ctverec x kolo)
+
+Moznost anonymnich modifikatoru?
+{
+  master (or target)
+  
+  {
+    slave
+  }
+}
+
+Udelat:
+
+color_min = COLOR_TABLE_MIN
+color_max = COLOR_TABLE_MAX
+
+- trideni tabulky barev?
+  - podle jedne hlavni barvy a potom podle zbytku?
+
+Ukoly:
+
+2) - blendovaci funkci pridat do heightmap/surfacu
+  - pixel_set())
+  - blend a blend factor
+  
+3) - Moznost nekolikanasobnych fraktalu/perlinu 
+  (prepisovani heightmapy/colormapy podle te zadane operace!!)
+
+- Heightmapy/textury - moznost zvolit michaci funkci pro pixel_set??
+  - vice perlinu/texture/fraktalu na sobe
+
+- globalni parametry - modifikator, slave, a podobne -> aby se to dalo dedit pokud to neni nastavene?
+  (pro knihovny)
+
+- points - anti-alising!!
+
+- implementace perlinovy sumove funkce??
+
+- vice modifikatoru stejneho jmena - jak se to resi!!??
+
+- ruzne tlusty cary?? (pixel size?)
+- moznost nejakyho aliasingu?? (aliasing hran)
+
+- nejaka sprava barev? Aby se to pak dalo cely sladit do jednotnyho barevnyho tonu...
+  - profiltrovat pres tu color-table?
+
+Projekt - genericka krajina!!
+
+- zkusit jiny povrchy? (perlinuv sum?)
+
+- udelat dlazdice podobne jako v gimpu!!
+
+- udelat ruzny typu tereru?
+  - kameny - mame
+  - trava - mame
+  - hlina?
+  - hlina s prasklinama?
+  - kamena dlazba?
+
+- zmensit rozmery modifikatoru na velikost masky!!
+
+- vyhlazeni okraju masky!!
+  - blending?? (okraju) + zadat velikost okraje?
+  - parametr masky
+    - presah? (% nebo velikost)
+    - filtr? (pravdepodobnost nebo blending)
+  - moznost aby presah byl automatickej?
+
+- udelat nejaky typy (interni) do surface!! (aby se dalo rozlisit co je za typ)
+
+- Udelat to rozvrzeni sceny pomoci barevne bitmapy!!
+  - zjistit si maximalni rozmer + udelat to jako masku?
+  - maska vazana na target? (texturu??)
+
+- Udelat BITMAP modifikator
+  - moznosti mapingu z bitmap
+- Udelat AUX target
+
+- Udelat separovany generator (resp. moznost +- pro RGB k tomu SCATTER)
+  - udelat nejaky nezavisly mesitupen mezi BITMAP -> TEXTURE
+  - target params?
+
+- sjednoceni barevnych tabulek? (histogramu) -> zdileni!!
+
+TODO -> udelat vsechno jako modifikator??
+
+- trava jako crack (zakrouceny)
+- HSV barvy?
+
+Trideni:
+  - barvy s prevladajici slozkou (r,g,b) u sebe
+  - intenzita
+
+- Nejaka postprodukce -> zahlazeni a tak!!
+
+- trava - dela se opravdu od 00 do ff?
+- histogram rozjet
+  - nacist nexturu -> tabulka barev
+
+- separovanej generator i pro R/G/B?
+
+- nejaka forma postprodukce -> zahlazeni??
+  - zapeceni dohromady??
+  - filtr + sum?
+
+- fraktal -> bud vyska a nebo rovnou normalovy vektor nebo kombinace?
+  - moznost vyberu?
+  - dalsi paramer?
+  - jako vlastnost i heighmapy?? -> ze chci exportovat i light mapu?
+
+- udelat separovanej R/G/B generator? -> pro kazdou slozku vektoru jeden!!
+- udelat funkci histogramu 
+  -> vyrez obrazku
+  -> prevod do barevne tabulky
+  -> tahle pravdepodobnostni tabulka se prevede pro pouziti
+
+- udelat mofifikator na kamenirou hlinu -> umisteni zakladnich kamenu + rozsireni?
+  - rozsireni podobne barvy v okoli?
+
+- Udelat tam hluboky ryhy (tema "crack") a pak je rozfiltrovat!!
+  (popr. jako jejich parametr udelat nejakej dosah/sirku??)
+
+- udelat moznost omezeni pixel-color na urcity barvy? -> r/g/b maska pro univerzalni modifikatoru
+- moznost preprocesoru - pustit na to ten z C?
+
+- udelat scale-faktor primo do surface -> height_get aby bralo i scale!!
+
+- Automaticka korekce souradnic? -> coordinates start - max_size
+
+Typy terenu:
+  - skalanaty desky (jako kusy skaly - bridlice a podobne)
+  - kamena dlazba (jak to udelat?)
+  - praskliny na zemi (blato) - jako to je normalne
+  - hlinene povrchy
+    - kaminky
+    - ruzne intenzity hnede hliny
+    - travnate povrchy
+    - listy a vetvicky
+
+- kameny
+  - maji divny okraje (zubaty misto rovny)
+
+- ukladani vyslednych bitmap s textur!!
+
+- Predelat vsechny ty destruktory na virtualni!!
+
+- maska -> vyladit ty rozmery masky verzus skutecna velikost!!
+
+- parametry jakekoliv muzou byt param_0/1/...
+
+- udelat konecne automaticke normalizace heightmap!!
+
+- udelat to kameninovy pole!!
+
+- Masky!!
+  -> Vyskova maska!!
+    - nastavit rozsah
+  -> Barvova maska!!
+    - nastavit  rozsah
+  -> bool maska
+
+- vyresit ty velikosti vysek textury!!! (v texture + modifikace ve svetle!!)
+
+- modifikator - filtr!!
+  - target
+  - height/color?
+
+- ruzne parametry tech kamenu?
+  - vzdalenost od okraje nebo od stredu?
+- ostre okraje poly -> podle masky!!
+
+- Udelat modifikator -> kamena dlazba
+  -> Nastaveni vlastnosti kamenu (krivek)
+  -> Osetreni meznich stavu
+  -> Vyladeni svetel
+  -> Rozsah vysky v texture -> nechat u svetla nebo dat do textury?
+  -> Normalizace heightmapy po kazde height operaci??
+
+- Source modifikator -> bitmapa nahrana z disku!!
+- Maska na kameny!!
+- modifikatory - predavat si mezi sebou dx/dy! - nastavit dx,dy pouze kdyz je 0
+- target "mask"?
+
+surface - clear() -> neni to nahodou nekde fill(0)?
+
+- pridelat nejake parametricke filtry??
+  - sin/cos
+  - 1-
+- Nejake transformacni funkce pro parametry!!
+  - 1-
+
+Udelat:
+  - diry/kameny -> fraktal s nastavenym stredem/okrajem
+  - trhliny/praskliny -> bod + propagace
+
+- souradnice -> specialni konstanta -> velikost cele plochy?
+
+- Kosinova interpolace!!
+
+Modifikator -> ruzne vetvicky na zemi!!
+
+TODO -> surface -> udelat korekci pro x+dx, y+dy aby to nepresahovalo tu surface
+  (automaticky klipovani)
+  
+TODO:
+  - crysis -> ruznej bordel na te zemi:
+    - kaminky
+    - vetvicky...
+
+- oddelit nastaveni barvy (color-box) od single point modifikatoru?
+
+- udelat na vyslednou texturu nejaky sum -> cerno-bily modifikator -> modulace/vyska?
+
+
+- Udelat tu rezacku (klidne jako txt file + bitmapy)
+  - pro rendering vetsiho prostoru  
+  - export bmp textur!! (vcetne alfa mapy)
+  - Rozrezani na ctverce podle max. velikosti textury (kvuli exportu a renderingu)
+
+- Udelat vlastni mapovaci tabulku barev?
+  0...1 -> index do tabulky + interpolace?? (mezi hranicnima hodnorama)
+
+- udelat moznost goniometrickeho modifikatoru pro T/Color boxy (+ nelin)
+
+- DOT3 bup mapping? -> height map v texturach?
+
+- Jak udelat tu hierarchii meshu??!! -> return jako jeden mesh??
+  - hierarchie? - jak to vymyslet?
+
+- Triangulaci z bodu!! -> Udelat podle toho paperu a nebo nekde najit
+
+- predavani parametru -> single point -> Jine nez linearni mapovani rozsah -> barva
+
+- tyto vsechny funkce bud jako parametr pro single point nebo jako filtr do heightmapy
+- extra funkce na obarvovani heightmapy??
+  - nelinearni mapovani
+  - ruzne skoky
+  - goniometricke funkce
+
+- Udelat konecne dokumentaci a neco co se da uploadnout na sourceforge!!
+
+- Modifikator -> Simulace toku vody a vymylani koryt??
+
+Modifikatory:
+  - single point (v texture)
+  - mesh generator (umisteni?)
+
+- "dedeni" modifikatoru -> zdedi nejaky modifikator (maska)
+  a ten soucastny je jen uprava
+
+-> heightmap -> moznost ulozit bitmapu?
+             -> ulozit heighmapu?
+
+Mask_get -> Scale na tu oblast!!
+
+- TODO -> zabranit asertu kdyz je kostka sceny nastavena blbe!!! 
+(omezeni maximalni velikosti sceny??)
+
+- Otestovat ten fraktalovej generator!! -> + masky + heightmap!!
+
+TODO:
+  - udelat nejake "demo" - krajina s kerema a hlinou
+
+- geometricke modifikatory -> udelat podobe jako texturove!!
+- udelat backport koordinatu??
+
+- vymyslet jak udelat aby se na zemi generovali dalsi objekty!! (kere)
+- Dodelat dolu nejakou konzoli??
+
+TODO
+  - bunch (nebo i jiny veci) -> mapovani vyrezu textury!!
+  (aby byla ruzna trava na ruznych listech ale jedna textura!!)
+
+TODO -> Command line argumenty!!
+
+- Udelat "zmackane" kusy zeme - jako utes v ufu
+
+- UDelat ostrou travu!! (ne tu kulatou, nebo udelat kulatost rovnejsi -> nejakej parametr kulatosti?
+  (mozna start/konec parametry)
+- Listy - zvolit velikost oblouku (mensi kulatost!!!)
+
+- udelat nejake lepsi nacitani cunku (jako dvojice) + presunuti material parametru k sobe
+- generovani keru a travy
+
+- generovani fraktalu v jednotlivych kostkach (net)
+
+- Kameny -> Jako zeme (mrizka) ale ruzne zdeformovane? (jako kopecek?)
+  - nebo kamen jako sub-area v cele velke texture
+
+GUI -> High-level generator (zadam jen typ krajiny a uz to jede)
+  - zadava se v % jednotlive typy terenu
+    - trava
+    - hlina
+    - skala
+    - pisek
+    - snih
+    - dlazba
+    - kameni
+
+  + tam bude podtyp kazdyho
+    - zvrasneni (eroze)
+    - simulace teceni vody? (v zavislosti na sklonu terenu)
+
+- zip - funguje?
+
+TODO:
+- udelat vyplne kostek ve zdi z fraktalu!! -> sub-fraktal pro ctvercove zdi?
+- kostky (net) - vertikalni/horizontalni posun jednotlivych kostek (hranic)
+  - rovne
+  - simulace ruzne velikych kamenu, ktere ale maji rovne strany
+
+- stiny -> udelat lepsi okraje? - kulate? - ne ostre hrany stinu!
+  - posun te masky!! -> o neco
+
+- light a lighmap pro vsechny modifikatory!!! -> i cary!
+ - lighmap area -> udelat prehozeni pro -dx/-dy?
+
+- TODO -> index 1 se mi nenahrava!!
+
+TODO -> kofola hotfix - udelat win verzi bez gui??
+
+TODO -> rozlozeni sceny (materialu) z bitmapove mapy?
+
+BUNCH -> Spojit to carama a udelat z toho pravouhlej objekt?
+
+TODO -> nejaka maska pro modifikator? -> nastaveni masky
+        a potom samotna aplikace?
+
+TODO->
+  heightmapy:
+    - filtrovani
+    - prevod heightmapy -> mesh (takze zahodit prime generovani do meshe)?
+  
+  - generovat jednotlive ctverce nahodne -> rand() na to v jakem poradi se 
+    ctverce maji generovat (ne jen 1,2,3,4 porad)
+  - Nastavit rohove body!! -> jinak to nejde!!  
+
+  - pouziti souradnice z predchoziho kola?
+  - Operace se souradnicema?
+    - add
+    - sub
+      - udelat to jako specialni koordinaty a nebo to delat jako specialni modifikatory
+      
+      
+Modifikator:
+  - lomena cara -> udelat vice souradnic za sebou -> sfericke? -> navazani sferickych souradnic!!
+  (popr. jako parametr pro caru)
+
+- souradnice -> sfericke!!
+- souradnice -> sekvence souradnic -> ocislovat (0,1)? -> + pouziti souradnice z 
+  predchoziho behu (sekvence souradnic!)
+  
+- generator kapradi -> nastavit pixel step + leafy jsou cary!!
+- renerator vetve s listima -> leafy jsou neco jinyho?
+
+- generovani stinu kolem objektu?
+
+TODO - predelat na:
+  - prevzeti koordinatu z predchoziho behu
+
+TODO -
+  - RECT -> modifikator rect -> udelat ruzne druhy vyplnovani?
+    - cary a podobne?
+
+TODO -> Udelat generovani vice souradnic (random) -> pro generovani vetsiho poctu
+objektu v urcite oblasti
+
+  - generovani kamenu!
+    - jeden kamen samostatnej?
+    - jako kopec + vystinovanej?
+    - jako neco vylezliho ven!! (mozna cernej okraj?)
+    
+- extra stin? -> vetsi! -> presah i na vic kamenu
+
+  - Generovani jednotlivych elementu:
+    - list (stromu)
+    - list (travy)
+      - hodne dela to ze jsou polopruhledne!!
+    - klacek (zeme)
+    - kamen (zeme)
+      
+      - pocitat osvetleni po aplikaci pixelu? jako soucast kazdyho modifikatoru??
+        - light_textura + operace na to
+        - mozna light faktor pro single?
+      
+    - generovani mrize (mrizky) - pro dlazdice!!, kostky, zdi!!
+      - potom posun te mrizky aby se udelali nerovnosti?
+      
+  HSV barevny model
+
+  - Moznost lepsi editace terenu (trava a podobne)
+    - trava a krovi
+    - generovani textury krovi
+
+- vyresit to uvolnovani a alokace objektu!! (meshe/materialy a spol)
+
+..._get();
+..._clear();
+..._set();
+
+...object_create()
+...object_remove()
+
+TODO->jak zajistit aby objekty meli stejnou scenu? (scene_get pro materialy/meshe a podobne)
+
+->objek_delete() - zrusi dany objekt ze sceny a provede uklid?
+  (mesh_delete, matetial_delete)...
+
+TODO -> GUI state jako soucast editoru (gui_interface)
+
+Prejmenovani:
+  - base_class        - pro tridu
+  - base_class_list   - pro list teto tridy
+
+Generator - udelat neco na "regeneraci" toho nahraneho modifikatoru
+
+TODO -> GUI window type (normal/age) -> dat to tam (at v tom neni chaos a vim co to je za typ)
+
+- Fraktalovy generator
+
+  -> Zobrazeni (ulozeni) heightmapy v odstinech sedi?
+  -> menit dynamicky ten pouzity rozsah + barevny mapovani?
+  
+  -> Moznost nacit pro kazdy bod terenu jeho:
+    - vysku (z meshe)
+    - normalovy vektor (interpolovany -> phong/flat?)
+  
+  - udelat nejaky zakladni gui pro ten generation stack
+  - pop-up menu nacist z gui
+  
+  - stredni bod -> predani pozice ve "vektoru" smerem dolu => do toho potomka (single point)
+                -> urceni hranice / mista kde se generuje?? (maska)??
+                
+                -> operator maska? (inverze)
+                
+                2 pristupy:
+                  - generovani vseho zaraz
+                  - generovani postupne (hlina + trava + kameny) -> vyzkouset!!
+
+- Jak je mozny ze se zmena screen_size uplatni pri relativnich koordinatech 
+  i kdyz neni nikde nastaveny ze se zmenila???
+- Jak to ze velikost sceny je nekonecna? -> blbe se mi updatuje kostka sceny!!
+- Jak to ze resize sceny -> OK (maximalizace/monimalizace funguje??)
+  ale reset sceny se deformuje FOV?? -> ma se FOV menit?? -> ma
+
+// TODO -> udelat nejaky globalni update menu -> po jeho nahozeni
+// (jedna funkce co se bude volat)
+editor_main_gui_update(); - presunout do gui_window_running_age tridy??
+(mozna nejaka univerzalni window_gui_update?)
+
+- Otestovat a sprovoznit ty nahodne generovane souradnice!!!
+  -> + test bunchu?
+
+Sjednoceni *p a & odkazu ve funkcich!!
+
+TODO: - zlepsit a zjednotit pojmenovani (je to desnej bordel)
+  - generated mesh
+  - generated texture (2 rozdilne veci!!)
+
+TODO - generovane veci:
+  - jeden bodu
+  - extended bod -> kulaty + mozna variace kolem stredu (zadane jako center/radius)
+  - ctverec / kulaty rohy
+  - cara
+  - bunch (trs)
+-------------------------
+  - oblast -> ruzne body v oblasti
+    - > vyplnit oblast podle vzdalenosti od tech bodu
+  
+  - Oblast - RECT -> nastaveni automaticky podle velikosti toho utvaru kterej kreslim?
+    - pro cary / tlusty cary a podobne
+    - fade in/out podle barvy (vektoru barvy)
+    - barevny hranice (zadany jina barva + fade + michani)
+    - projet celou oblast jen 1x a projet vsechny utvary
+  - Cara + vzdalenost od cary, ruzna vzdalenost na ruznych koncich + oblouk (uprostred velka)
+    - lomena cara -> spolecne koncove/zacatecni body + vzdalenost bodu od 2 a vice car (kolena a ohyby)
+  
+  - Vzdalenost -> Udelat min a max vzdalenosti!!! (ne jen max)
+    - Fade podle stredu te vzdalenosti (pokud je)
+      - Fade:
+        - od jakokoliv vzdalenosti ze stredu (fade-center? 0..1)
+  
+  - interaktivni mod -> jen uprava textury (nemazat bitmapu!!)
+  
+  - Vic svetel pro texturu??  
+  
+  - Materialovy svetlo pro kazdou texturu (konfigurace barev)
+    - oddeleni zdroje svetla (intenzity) a jeho barevnych vlastnosti?
+  
+  - libovolne natoceny ctverec?
+  - Utvar - libovolna cara + vzdalenost od ni (vzdalenosti bodu od cary)  
+
+- Wrapovane textury -> Presah v texture se pomoci % mod da z druhe strany!!!
+  (aby na sebe navazovali)
+
+- Nacist parametry generatoru ze souboru:
+1. sekce -> ohranicena {}
+# komentare
+parametr : hodnota
+
+TODO -> nacteni 1 radku -> kontrola maximalni delky!! fgets!!
+
+Nebo ini soubory??
+
+- virtualni deskruktor?? -> rusit ten list??
+  
+TODO - jine metody generovani terenu:
+  - presouvani stredniho bodu
+  - perlinova plazma
+  
+  - fade - utlum i podle vektoru barvy -> zakladni i scattering barva
+
+TODO -> Renderovani krajiny z GRIDU tech bodu -> generovani trojuhelniku dynamicky!!
+     -> podle velikosti vertexu
+TODO -> jmena textur bez koncovek!!!
+TODO -> predelat dir/file jen na file? A extrahovat to z toho real-time?
+TODO -> lepsi reload textur!! -> pozdni (odlozene) nahrani?
+                              -> Vyresit filename/texture name!!!
+TODO -> nechavat / nenechavat bitmapy v ram??
+TODO -> Predelat ten retezec zmen/updatu bitmap v tom generatoru textur (texture/bitmap get)
+
+TODO -> pixel size -> jaka nejmensi oblast se bude pokryvat nahodnou barvou
+        (nejmensi mnozstvi obarvenych pixel vedle sebe -> vytvoreni "trsu", nebo "skvrny" pixelu)
+        
+TODO -> Generovani bodu v ctvercovym gridu (area pixel step !! step ->
+
+TODO -> Odecet (inverze) barvy
+TODO -> Fade-out vektory -> aby se to mohlo smerem k okraji stmavovat!!
+TODO -> FADE pro area
+TODO -> size modifikator pro vsechny (+funkce)
+
+TODO -> Generator zeme:
+        - geometricke obrazce?
+        - generovat i stinovani (+ kameny??)
+        - generovat klacky? (+ stiny/jehlici/kameny)
+
+TODO -> predelat tu rotaci!!
+-> Vsechny objekty pozuivaji scenu co maji jako svoji vnitrni!!
+
+TODO -> Ruzny zobrazovaci mody!! (vrsek/bok/perspektiva)
+
+-> Udelat ruzne rezimy zobrazeni
+  - Body
+  - Dratove
+  - Plochy
+  - Textury
+
+-> Generator
+  -> vyber oblasti
+  -> new land
+  -> height map
+  -> fraktalovy
+  -> filtr
+
+Obecne rozhrani trid:
+
+  create()    - vytvori/inicializuje obsah tridy
+  destroy()   - zrusi obsah tridy
+  clear()     - smaze/uvolni obsah tridy
+
+  set()       - naplni celou tridu
+  get()       - cte celou tridu
+  copy()      - vraci kopii
+
+  *_set()     - naplni cast tridy
+  *_get()     - cte cast tridy
+
+  init()?     - inincializace/reset?
+  insert()?   - vlozi jednotku?    
+
+  Nepouzivat dedicnost ale vnorene objekty/tridy!!!!
+
+- TODO
+  -> zamykani meshu -> zamknuti jednotlivych casti
+  -> prehodit *p_file a *p_dir a dat *p_dir = NULL
+  -> mark a flag - sjednotit?
+  
+- jedina print funkce -> vcetne jmena a identu
+
+Scene:
+  -> udelat scene list v grf
+  -> nastaveni aktivni sceny
+
+-> Udelat safe/safe off pro vsechny souborovy operace default + pak podle parametru
+
+update_geometry() - updatuje geometrii objektu (pozice v ramci hierarchie)
+
+GIZMO objekt -> nema objekty -> ma obalku z podrizenych objektu
+
+Objekt:
+  - prima editace (posun/rotace....)
+  - animace
+    - runtime animace -> vybrani/vytvoreni animace -> runtime
+    - prednahrana animace -> vytvoreni seznamu animaci pro kazdy objekt?
+
+Berusky2:
+  - animace kamery
+    - nastaveni flagu zmeny kamery
+  - vyrobeni render listu
+  - animace materialu
+  - animace textur
+  - animace objektu, volani end funkci
+  - animace kosti v objektech
+  - animace casticovych systemu
+  - animace a prepocitani svetel
+  - animace vody
+  - zpruhledneni prvku pred kamerou
+  
+  - vykresleni
+  
+    - vymazani flagu zmeny kamery
+    
+Schema modifikace objektu:
+  - modifikace z animaci
+    - modifikace uzivatelem (z vnejsku)
+  - prepocet hierarchie
+
+Animace:
+  - optimalizace sim animaci -> bez toho cteni klicu/pocitani a podobne?
+  - vazane animace -> co maji jit za sebou
+  - sjednoceni casovych poctu v animation_track a animation_time
+  
+  - konec animace
+    - navazana animace
+    - vyvolani eventu
+
+Objekt:
+  - pripojene privatni animacni templaty
+
+- model:
+    - rekurzivni update a update_clear se bude volat az z TOP objektu
+      - mesh?
+      - lights?
+
+Zmeny objektu:
+  - lokalni pozice
+  - zmena hierarchie
+
+-> STATIC
+    - umistene v hierarchii -> maji hierarchicke obalky
+    - transformace jsou ignorovany
+    - pokud jsou pripojeny k dynamickemu objektu - stanou se dynamicke
+
+-> DYNAMIC    
+    - umistene v hierarchii
+    - nemaji hierarchicke boxy - jen lokalni
+
+Flagy:
+
+    -staticke
+    -dynamicke
+    -runtime update (transformace, boxy) -> po kazde zmene
+	- volat automaticky
+	    - po kazde zmene nastavit prislusny flag
+	    - bud se updatne automaticky nebo manualne
+	
+- synchronizace BOX/AABB/OBB
+
+TODO:
+  - obb/aabb obalky
+    - lock/unlock -> a pak test na zmenu obb/aabb
+    - update obb-border explicidne?
+    - stromova hierachie obalek -> automaticky pripojene k objektum?
+      - object box -> box objektu a vsech jeho pod-objektu
+      - border-update !! -> volat
+    
+    - hierarchie sceny
+      - Oktanovy strom?
+    - render listy
+  
+    - mesh flags:
+      - no box (bez kolizi)
+      - typ facu?
+  
+  - scene::load -> parametry (erase/join?)
+  - animace objektu
+  
+  - plna / maximalni podpora materialu
+  - vertex/pixel shadery
+  
+  - load maxima veci z 3ds
+  - load maxima veci z blenderu
+  
+  - osvetleni sceny
+  - lightmapy
+  - rendering
+
+  - defaultni nastaveni enginu v tom p_graf
+  - generator stromu? Takovych tech z toho alfa kanalu (chucvalec)
+
+
+- predelat vsechny #include na include v *.cpp souborech?
+- sjednoceni chovani trid -> load/free + konstruktory
+- komprese textur!! -> primo ve vram!!
+
+- find -> FNMATCH! -> vracet lin seznam meshu
+
+- odstranit testy pro extense ktere MUSI byt podporovane
+(multitexturing, spekularni barvy....)
+
+- konstruktory byt muzou!!! (a free v nich)
+
+- vyhodit vsechny free (ffree?) -> prepsat na release!!
+
+- udelat univerzalni rutiny "error" a "warning" jako ve wrapperu!
+  - FIX PERROR -> sou to 2 prikazy!!! nejde if() PERROR
+
+  - na to navazat render-list
+  - udelat kamery v hierrachii -> muzou se pripojit k objektu
+
+- Znacka objektu (LOADED, ...)
+  
+AGE wrapper -> prevadet volani na aktualni scenu!!
+- scene interface??
+
+Dodelavky:
+  - dodelat lock interface 
+    (read = automaticy unlock bez params
+     write = unlock automatocky se zmenou
+       unlock(FALSE) -> uptional
+  - jednotny unlock interface!!
+
+scene_box_depth_get -> udelat na to cache + test zmeny?
+
+-> Kamera
+  -> rotace kolem osy
+  -> prvne nastavit kameru a pak az pocitat viditelnost
+
+TODO:
+  - Udelat prusek paparsku/triangle + zakladni pohyb po terenu
+  - zakladni nasviceni
+
+TODO:
+  - lock interface -> sjednoceni + volani unlock bez true/false
+  
+TODO:
+  - ty boxy!!
+
+TODO:
+  - vypocet normalovych vektoru
+  - openGL/systemove osvetlovani
+    - svetla pomoci materialu!!
+
+TODO:
+  - lepsi 3DS import (vcetne animaci)
+  - 3DS export
+
+TODO:
+  - funkce na generovani objektu (zeme?) + kostka
+  - sehnat nekde model auta a udelat jenoduchou simulaci jizdy!!
+
+TODO:
+  - generovani objektu:
+    - kostka/koule?
+    - zeme -> fraktalovy generator
+    - generator keru
+
+TODO:
+  - scale do cube (kostky)
+  
+TODO:
+  - editacni funkce
+  - load/save modelu!!
+
+TODO:
+  - editacni funkce -> vyber v hierarchii
+  - editace v hierarchii
+  - vyber paprskem
+
+TODO:
+  - sablony na vektory?
+
+TODO:
+  - nastaveni pivot pointu
+  - mesh center
+  - mesh size
+
+TODO:
+  - memory filesystem -> zapis do souboru pri write
+
+TODO:
+  - presunout scenu do age_main (z graph)
+  - lepsi detekze zmeny vertexu -> zmena boxu/normal
+
+GUI:
+  - jednotny system na volani prikazu?
+    - klavesove zkratky
+    - menu
+  - namapovat ty klavesy nejak rozumne na ty prikazy??
+  
+  - main window
+    -> load/save
+    -> new/quit
+    
+  - Selection info
+    - selected mesh
+    - mesh properties
+    
+  - generator window
+    -> set-up
+      - 
+    -> generate new
+    -> filtruj
+
+TODO pro nejblizsi dobu:
+  - udelat vyber meshe / meshu (ctvercem / paprskem) -> v enginu
+  - zobrazeni vybranych meshu v GUI
+  - editace vybranych meshu pomoci menu
+
+TODO:
+  - prusecik pro objekt -> obalku pro cely 2D objekt a potom intersekce? -> ctverec/ctverec
+
+TODO:
+  - vyber ctvercem -> pravo/levo
+  
+TODO:
+  - udelat si audit/graf vsech tech trid!! -> co je virtualni a co ne!!
+
+TODO:
+  - rotace -> fixace toho rotacniho bodu!!!
+
+TODO:
+  - load/save objektu
+  - vyroba zeme
+
+-> nastaveni operace te bazove (zakladni) heightmapy -> mesh
+
+
+- Udelat lepsi navazani GUI na prikazy v editoru
+
+TODO:
+  - udelat nejake selection interface? -> Vybrany objekt -> automaticky se vybere?
+
+Funkce trid:
+  - create  - vytvori obsah tridy (vola se externe a 1x)
+  - clear   - vycisti obsah dane tridy (uvolni pamet), muze se volat opakovane
+  - remove  - zrusi obsah, uvolni pamet - opak create. muze byt volan z destruktoru
+  
+  - class_remove
+  
+Polar:
+  - r -> rotation
+  - e -> elevation
+  - l -> length

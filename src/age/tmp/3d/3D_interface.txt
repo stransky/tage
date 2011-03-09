@@ -1,0 +1,36 @@
+Graficke 3D API
+
+Graphics
+--------
+
+Zakladni objekt pro 3D engine, funkce:
+
+- zapnuti/vypnuti grafiky
+- nastaveni parametru 3D/2D grafiky
+- konfigurace
+
+class device_konfig
+
+Scena
+-----
+
+sou tam vsechny objekty ve scene, co se tam nachazi
+- load/save funkce pro scenu
+
+- Nastaveni transformacni pipeline ()
+- Mesh
+- Svetla
+- Materialy
+
+Mesh
+----
+
+Animace
+-------
+- Vymyslet jako to s nema bude!!!!
+
+
+
+
+Pozadavky:
+----------

@@ -1,0 +1,24 @@
+TAGE
+----
+
+Incomplete texture&terrain generator. It's supposed to be complete land generator
+(land, rocks, grass...) but it generates basic land + textures now.
+
+Build
+-----
+Install some devel packages:
+
+SDL-devel
+SDL_image-devel
+gtkglarea2-devel
+
+Build by configure & make.
+
+Run
+---
+Run as:
+
+tage file.txt
+
+where file.txt is a tage data file (see some examples at age_lib).
+

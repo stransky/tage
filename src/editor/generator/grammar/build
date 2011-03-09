@@ -1,0 +1,14 @@
+# build environment for cygwin
+
+# bison -d calc1.y    produces calc1.tab.c
+# bison -y -d calc1.y produces y.tab.c (the standard yacc output)
+
+# for calc1 and calc2, you may have to
+# include the following in the lex ".l" file:
+#    extern int yylval;
+
+# calc3
+bison -l -y -d params.y
+mv y.tab.c y.tab.h ..
+# gcc -c  lex.yy.c
+# gcc y.tab.o lex.yy.o calc3b.c -o calc3b.exe
