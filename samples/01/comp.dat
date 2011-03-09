@@ -1,0 +1,46 @@
+/*
+  - mesh generator (jeho soubor)
+  - umisteni tohoto meshe (podobne jako textura?)
+*/
+
+{
+  name = land
+  type = MESH_GENERATOR
+  file = land.dat
+
+  /*
+  {  coordinates from textures
+  }
+  */
+}
+
+{
+  name = grass
+  type = MESH_GENERATOR
+  file = grass.dat
+
+/*
+  { coordinates from textures
+  }
+  */
+}
+
+{
+  name = bush
+  type = MESH_GENERATOR
+  file = bush.dat
+
+/*
+  { coordinates from textures
+  }
+  */
+}
+
+{
+  name = generator_launcher
+  type = GENERATOR_LAUNCHER
+
+  mesh_generator = land
+  mesh_generator = grass
+  mesh_generator = bush
+}

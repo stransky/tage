@@ -1,0 +1,304 @@
+\documentclass[11pt]{article}
+\usepackage{a4wide}
+
+\begin{document}
+
+\section{Tage datafile description}
+
+This file describes tage input files which describes whole scene.
+
+\section{Comments}
+
+The input file uses standard C++ comments:
+
+\begin{verbatim}
+// One line comment
+
+/*
+  Two or more line comment
+*/
+\end{verbatim}
+
+\section{Values}
+
+All values set by:
+
+\begin{verbatim}
+ value_name = value
+\end{verbatim}
+
+"value" can be strings, numbers (hexa, integer, float-point), colors, vectors
+and enumerated types.
+
+\subsection{Numbers}
+
+Numbers are standard numerical values and can have a decimal part.
+
+\begin{verbatim}
+ size = 10
+ height = 1.1
+\end{verbatim}
+
+\subsection{Strings}
+
+Strings don't use commas and can't contain spaces. String values are typically 
+used for modificator/generator names.
+
+\begin{verbatim}
+ name = my_modificator_name
+\end{verbatim}
+
+\subsection{Colors}
+
+Colors can be defined by who ways - by separated RGB values
+(0-255) or by one hexadecimal digit (HTML color). For instance, 
+we want to set R:33, G:25, B:7 to color\_center value:
+
+\begin{verbatim}
+ // by RGB:
+ color_center_r = 33
+ color_center_g = 25
+ color_center_b = 7
+ 
+ // by one number (RRGGBB)
+ color_center = 211907
+\end{verbatim}
+
+See the \_r,\_g and \_b suffixes. They are 0 by default.
+
+\subsection{Vectors}
+
+Vectors are composed from two or three numbers and they
+can be integer or floating point numbers. For instance, we want to 
+set light\_position vector:
+
+\begin{verbatim}
+ light_position_x = -1
+ light_position_y =  1
+ light_position_z = -1
+\end{verbatim}
+
+See the \_x,\_y and \_z suffixes. They are 0 by default.
+
+\subsection{Angles}
+
+An angles are normal numbers (an angle in degrees), from 0 to 360. 
+They are used in polar coordinates and so on.
+
+\begin{verbatim}
+ some_angle = 20.6
+\end{verbatim}
+
+\subsection{Enumerated types}
+
+Enumerated types are values which can have some predefined values. 
+They are typically used for blocks type descriptions, some types,
+targets and so on.
+
+\begin{verbatim}
+// coordinate type
+type = MODIFICATOR_COORDINATE
+
+// set modificator_target to texture
+modificator_target = TEXTURE
+
+// set modificator_target to geometry
+modificator_target = GEOMETRY
+\end{verbatim}
+
+\subsection{Intervals}
+
+Some values can be set as interval. If a value is set as interval,
+it means it can get any value from the border values. The border values
+are marked as "\_min" and "\_max" suffixes.
+
+\begin{verbatim}
+ // Interval set by only one value so it's always 10
+ angle = 10
+
+ // Interval set by two border values, 
+ // can be any value from 10 to 20
+ angle_min = 10
+ angle_max = 20
+\end{verbatim}
+
+\subsection{Coordinates}
+
+Coordinates are 2D area which describes 
+where a modificator is applied.  The coordinate is a whole 
+block with "type = MODIFICATOR\_COORDINATE", index (will be described later)
+and start and size (or end) 2D vectors.
+
+\begin{verbatim}
+{
+  type = MODIFICATOR_COORDINATE
+
+  index = 0
+
+  start_x = 0
+  start_y = 0
+
+  size_x = 40
+  size_y = 40
+}
+\end{verbatim}
+
+\section{Basic blocks}
+
+An atomic part of the file is a block inside compound braces. It describes one 
+atomic unit inside generator or some generator values. Each block must
+contain its name and type.
+
+\begin{verbatim}
+{
+  name = generator
+  type = GENERATOR_MESH
+
+  // All generator params come here
+}
+\end{verbatim}
+
+Blocks can be nested, like this one:
+
+\begin{verbatim}
+// Describes pixel generator and its color definition
+{
+  name = pixel_point
+  type = MODIFICATOR_POINT_SINGLE
+
+  {
+    type = MODIFICATOR_POINT_SINGLE_COLOR    
+    color_center = 3b5528
+  }
+}
+\end{verbatim}
+
+\section{Generator architecture}
+
+Whole generator is designed as a modificator tree. There is one master (root)
+modificator and it passes results to slave modificators. A last modificator 
+in the chain writes results (color pixel, heights) directly to a generator target
+(it can be mesh itself, mesh texture or something else).
+
+\section{Scene description}
+
+A generated scene is (for now) a flat mesh with one big texture. If the texture
+is too big, is sliced to smaller parts. The scene is described by Mesh, 
+Material and Texture blocks.
+
+\subsection{Mesh params}
+
+Describes generated mesh parameters like type, size and so on:
+
+\begin{verbatim}
+{
+  name = test_mesh
+  type = MESH_PARAMS
+
+  /*
+    Mesh types can be:
+   
+    MESH_LAND   - a flat land
+    MESH_BUNCH  - a bunch of plates
+    MESH_GRASS  - not implemented yet
+    MESH_BUSH   - not implemented yet
+  */
+  mesh_type = MESH_LAND
+  
+  /*
+    Mesh dimensions. All values are vectors.
+  
+    [vector] start - lesh location 
+    [vector] diff  - a size of one segment 
+    [vector] size  - segments num
+  */  
+    
+  /*
+    Parameters related to bunch:
+    
+    [int, interval]   bunch_slice_num
+    [int, interval]   bunch_slice_segments
+      
+    [float, interval] bunch_slice_x_offset
+    [float, interval] bunch_slice_z_offset
+      
+    [angle, interval] bunch_slice_falling
+    [angle, interval] bunch_segment_falling
+        
+    [int]             bunch_slice_rotation_incemental
+    [angle, interval] bunch_slice_rotation_range
+    [angle, interval] bunch_slice_rotation_step
+  */
+}
+\end{verbatim}
+
+\subsection{Material params}
+
+Describes material of generated mesh:
+
+\begin{verbatim}
+{
+  name = test_material
+  type = MATERIAL_PARAMS
+  
+  // [int] transparent
+  // Transparent material are for bunches
+  transparent = 0
+  
+  // [int] double_side
+  // Double sided material are used by bunches
+  double_side = 0  
+}
+\end{verbatim}
+
+\subsection{Texture params}
+
+Describes texture for the generated mesh (material).
+
+\begin{verbatim}
+{
+  name = test_texture
+  type = TEXTURE_PARAMS
+
+  /*
+    [vector]  texture_size
+    [int]     texture_height
+    [color]   background_color
+    [int]     texture_alpha
+  */
+}
+\end{verbatim}
+
+\section{Generator targets}
+
+\section{Generator modificators}
+  
+\section{Generic modificator}
+  
+\section{Generic modificator}
+
+  \{"MODIFICATOR\_COORDINATE",      MODIFICATOR\_COORDINATE\_TYPE\},
+  \{"MODIFICATOR\_MASK",            MODIFICATOR\_MASK\_TYPE\},  
+  \{"MODIFICATOR\_POINT\_SINGLE",    MODIFICATOR\_POINT\_SINGLE\_TYPE\},
+  \{"MODIFICATOR\_POINT\_SINGLE\_COLOR",MODIFICATOR\_POINT\_SINGLE\_COLOR\_TYPE\},
+  \{"MODIFICATOR\_POINT\_SINGLE\_HEIGHT",MODIFICATOR\_POINT\_SINGLE\_HEIGHT\_TYPE\},
+  \{"MODIFICATOR\_POINT\_EXTENDED",  MODIFICATOR\_POINT\_EXTENDED\_TYPE\},
+  \{"MODIFICATOR\_RECT",            MODIFICATOR\_RECTANGLE\_TYPE\},
+  \{"MODIFICATOR\_LINE",            MODIFICATOR\_LINE\_TYPE\},
+  \{"MODIFICATOR\_LINE\_LEAF",       MODIFICATOR\_LINE\_LEAF\_TYPE\},
+  \{"MODIFICATOR\_BUNCH",           MODIFICATOR\_BUNCH\_TYPE\},
+  \{"MODIFICATOR\_NET",             MODIFICATOR\_NET\_TYPE\},
+  \{"MODIFICATOR\_HEIGHT\_MAP",      MODIFICATOR\_HEIGHT\_MAP\_TYPE\},
+  \{"MODIFICATOR\_BITMAP",          MODIFICATOR\_BITMAP\_TYPE\},
+  \{"MODIFICATOR\_FRACTAL",         MODIFICATOR\_FRACTAL\_TYPE\},
+  \{"MODIFICATOR\_CRACK",           MODIFICATOR\_CRACK\_TYPE\},
+  \{"MODIFICATOR\_LIGHT",           MODIFICATOR\_LIGHT\_TYPE\},
+  \{"MODIFICATOR\_FILTER",          MODIFICATOR\_FILTER\_TYPE\},
+  \{"GENERATOR\_MESH",              GENERATOR\_MESH\_TYPE\},
+  \{"MODIFICATOR\_GENERATOR\_MESH",  MODIFICATOR\_GENERATOR\_MESH\_TYPE\},
+  
+\section{Generator launcher}
+
+  GENERATOR\_LAUNCHER
+
+\end{document}

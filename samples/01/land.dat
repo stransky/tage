@@ -1,0 +1,227 @@
+include materials.dat
+
+/*
+ * Mesh parameters
+ */
+
+// Land parameters
+{
+  name = test_mesh
+  type = MESH_PARAMS
+  mesh_type = MESH_LAND
+
+  size_x = 100
+  size_z = 100
+}
+
+// Land material
+{
+  name = test_material
+  type = MATERIAL_PARAMS
+}
+
+// Land texture
+{
+  name = test_texture
+  type = TEXTURE_PARAMS
+
+/*
+  texture_size_x = 2048
+  texture_size_y = 2048
+*/
+
+//  heightmap_dist = 0.1
+  heightmap_dist = 0.05
+
+  background_color_r = 255
+  background_color_g = 255
+  background_color_b = 255
+  background_color_a = 0
+}
+
+/*
+ * Mesh geometry modificator
+ */
+{
+  name = land_fractal
+  type = MESH_MODIFICATOR_FRACTAL
+
+  fractal_delta = 10
+  fractal_hurst = 0.5
+
+  height_multiplier = 10
+}
+
+
+/*
+ * Mesh texture modificator
+ */
+{
+  name = rect
+  type = TEXTURE_MODIFICATOR_PATTERN_RECTANGLE
+  modificator_slave = earth_pixel_point
+}
+
+{
+  name = rect
+  type = TEXTURE_MODIFICATOR_PATTERN_RECTANGLE
+  modificator_slave = grass_pixel_point
+}
+
+{
+  name = rect2
+  type = TEXTURE_MODIFICATOR_PATTERN_MID_POINT
+  modificator_slave = grass_pixel_point
+//  modificator_slave = test_pixel_point
+//  modificator_slave = rock_pixel_point
+//  modificator_master = 1
+
+//  generator_hurst = 0.1
+  generator_hurst = 0.2
+
+  height_range_min  = 0.5
+  height_range_max  = 1
+
+  height_center = 1.0
+  height_border = 0.0
+  
+  {
+    type = TEXTURE_MODIFICATOR_COORDINATES
+
+    start_x = 100
+    start_y = 100
+
+    size_x = 128
+    size_y = 128
+  }
+  
+  light_phong = 1
+  light_position_y = 1
+  light_color_specular_active = 0
+  light_shadow = 1
+}
+
+/*
+{
+  name = line_leaf
+  type = TEXTURE_MODIFICATOR_PATTERN_LINE
+  modificator_slave = grass_pixel_point
+}
+*/
+
+/*
+{
+  name = line2
+  type = TEXTURE_MODIFICATOR_PATTERN_LINE
+  modificator_slave = test_pixel_point
+  
+  modificator_master = 1
+}
+*/
+
+{
+  name = line_grass
+  modificator_slave = grass_pixel_point
+  type = TEXTURE_MODIFICATOR_PATTERN_LINE
+  pixel_size = 2
+}
+
+{
+  name = line_leaf
+  type = TEXTURE_MODIFICATOR_PATTERN_LINE_LEAF
+  modificator_slave = line_grass
+  modificator_master = 1
+
+  coordinates_random = 1
+  coordinates_random_num = 5
+
+  {
+    type = TEXTURE_MODIFICATOR_COORDINATES
+
+    index = 0
+
+    start_x = 250
+    start_y = 0
+
+    size_r = 45
+    size_l = 100
+  }
+
+  {
+    type = TEXTURE_MODIFICATOR_COORDINATES
+
+    index = 1
+
+    start_x = 260
+    start_y = 0
+
+    size_r = 135
+    size_l = 300
+  }
+}
+
+{
+  name = line_net
+  type = TEXTURE_MODIFICATOR_PATTERN_NET
+//  modificator_slave = line2
+  modificator_slave = grass_pixel_point
+//  modificator_master = 1
+}
+
+{
+  name = line1
+//  type = TEXTURE_MODIFICATOR_PATTERN_LINE_LEAF
+  type = TEXTURE_MODIFICATOR_PATTERN_LINE_LEAF
+//  modificator_slave = line_leaf
+  modificator_slave = line_net
+  
+//  light_phong = 1
+  light_position_x = 1
+  light_position_y = 1
+  light_position_z = 0
+//  light_color_specular_active = 0
+//  light_shadow = 1
+//  light_shadow_size = 10
+
+// pixel_size = 10
+
+//  coordinates_random = 1
+//  coordinates_random_num = 10
+
+
+  {
+    type = TEXTURE_MODIFICATOR_COORDINATES 
+
+    index = 0
+
+    start_x = 10
+    start_y = 10
+
+    size_x = 100
+    size_y = 100
+  }
+
+  {
+    type = TEXTURE_MODIFICATOR_COORDINATES
+
+    index = 1
+
+    start_x = 255
+    start_y = 255
+
+    size_x = 200
+    size_y = 200
+  }
+}
+
+{
+  name = rect3
+  type = TEXTURE_MODIFICATOR_PATTERN_RECTANGLE
+  modificator_slave = rock_pixel_point
+}
+
+// Launch the whole generator thing
+{
+  type = MESH_GENERATOR_CONFIG
+  texture_modificator = rect3
+}

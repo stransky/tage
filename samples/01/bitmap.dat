@@ -1,0 +1,72 @@
+include materials.dat
+
+// Test script
+{
+  name = test_mesh
+  type = MESH_PARAMS
+
+  diff_x = 3
+  diff_y = 6
+  diff_z = 6
+
+  bunch_slice_segments = 2
+  bunch_slice_falling = 0
+
+  bunch_slice_x_offset = 1.5
+
+  mesh_type = MESH_BUNCH
+}
+
+{
+  name = test_material
+  type = MATERIAL_PARAMS
+//  transparent = 1
+  double_side = 1
+}
+
+{
+  name = test_texture
+  type = TEXTURE_PARAMS
+
+  texture_alpha = 1
+  texture_size_x = 512
+  texture_size_y = 512
+
+//  heightmap_dist = 0.1
+  heightmap_dist = 0.05
+
+  background_color_r = 255
+  background_color_g = 255
+  background_color_b = 255
+  background_color_a = 0
+}
+
+{
+  name = bitmap
+  type = GENERATOR_MASK
+  bitmap = colormap.png
+//  bitmap = test_mask6.bmp
+}
+
+{
+  name = rect3
+  type = TEXTURE_MODIFICATOR_PATTERN_RECTANGLE
+  modificator_slave = grass_pixel_point
+
+  mask = bitmap
+
+/*
+  mask_color_r = 255
+  mask_color_g = 255
+  mask_color_b = 255
+*/
+
+  mask_color_r = 32
+  mask_color_g = 152
+  mask_color_b = 32
+}
+
+{
+  type = GENERATOR
+  texture_modificator = rect3
+}

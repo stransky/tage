@@ -1,0 +1,72 @@
+include materials.dat
+
+{
+  name = grass_background
+  type = MODIFICATOR_FRACTAL
+
+  modificator_slave = grass_pixel_point
+
+  fractal_hurst = 0.2
+}
+
+{
+  name = dust_fields
+  type = MODIFICATOR_FRACTAL
+
+  modificator_slave = dust_pixel_point
+
+  height_range_min = 0.8
+  height_range_max = 0.9
+
+  fractal_hurst = 0.2
+}
+
+// Mesh generator
+{
+  name = grass_generator
+  type = GENERATOR_MESH
+
+  modificator = grass_background
+  modificator_target = TEXTURE
+  modificator = dust_fields
+  modificator_target = TEXTURE
+}
+
+// Test script
+{
+  name = test_mesh
+  type = MESH_PARAMS
+
+  size_x = 20
+  size_z = 20
+
+  mesh_type = MESH_LAND
+}
+
+{
+  name = test_material
+  type = MATERIAL_PARAMS
+}
+
+{
+  name = test_texture
+  type = TEXTURE_PARAMS
+
+  texture_size_x = 1024
+  texture_size_y = 1024
+
+//  heightmap_dist = 0.1
+  heightmap_dist = 0.05
+
+  background_color_r = 255
+  background_color_g = 255
+  background_color_b = 255
+  background_color_a = 0
+}
+
+{
+  name = generator_launcher
+  type = GENERATOR_LAUNCHER
+
+  generator_mesh = grass_generator
+}

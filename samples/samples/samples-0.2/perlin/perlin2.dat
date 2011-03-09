@@ -1,0 +1,80 @@
+// Target pixels dust pixel points
+{
+  name = background_point
+  type = MODIFICATOR_POINT_SINGLE
+
+  // Base dust background (from fractal generator)
+  {
+    type = MODIFICATOR_POINT_OPBOX
+
+    color_min = #0
+    color_max = #765648
+
+    pixel_color_final = color_min + (color_max-color_min)*PARAM_PREV_0
+  }
+}
+
+{
+  name = background_fractal
+  type = MODIFICATOR_PERLIN
+  perlin_persistence = 1
+  modificator_slave = background_point
+}
+
+// Shadows
+{
+  name = background_point_shadow
+  type = MODIFICATOR_POINT_SINGLE
+
+  {
+    type = MODIFICATOR_POINT_OPBOX
+
+    color_min = #0
+    color_max = #ffffff
+
+    pixel_color_final = pixel_color_final * (color_min + (color_max-color_min)*PARAM_PREV_0)
+  }
+}
+
+// shape
+{
+  name = background_shape_bunch
+  type = MODIFICATOR_BUNCH
+  border = 1
+  
+  coordinates_operation = ADD
+  {
+    type = MODIFICATOR_COORDINATE
+    size.x = 110
+    size.y = 110
+  }
+  modificator_slave = background_point_shadow    
+}
+
+// shape
+{
+  name = background_shape
+  type = MODIFICATOR_RECT
+  pixel_step = 100
+  modificator_slave = background_shape_bunch
+}
+
+
+// Mesh generator
+{
+  name = forest_generator
+  type = GENERATOR_MESH
+
+  modificator = background_fractal
+  modificator_target = TEXTURE
+
+  modificator = background_shape
+  modificator_target = TEXTURE
+}
+
+{
+  name = generator_launcher
+  type = GENERATOR_LAUNCHER
+
+  generator_mesh = forest_generator
+}

@@ -1,0 +1,2770 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>tage</TITLE>
+<META NAME="description" CONTENT="tage">
+<META NAME="keywords" CONTENT="tage">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="tage.css">
+
+</HEAD>
+
+<BODY >
+<!--Navigation Panel-->
+<IMG WIDTH="81" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next_inactive"
+ SRC="file:/usr/share/latex2html/icons/nx_grp_g.png"> 
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="file:/usr/share/latex2html/icons/up_g.png"> 
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="file:/usr/share/latex2html/icons/prev_g.png">   
+<BR>
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<P>
+
+<H1><A NAME="SECTION00010000000000000000">
+Tage</A>
+</H1>
+
+<P>
+
+<H1><A NAME="SECTION00020000000000000000">
+Tage datafile description</A>
+</H1>
+
+<P>
+This file describes tage input files.
+
+<P>
+
+<H1><A NAME="SECTION00030000000000000000">
+Comments</A>
+</H1>
+
+<P>
+The input file uses standard C++ comments:
+<PRE>
+// One line comment
+
+/*
+  Two or more line comment
+*/
+</PRE>
+
+<P>
+
+<H1><A NAME="SECTION00040000000000000000">
+Properties</A>
+</H1>
+
+<P>
+All properties are set by
+<PRE>
+property_name = value
+</PRE>
+a "value" can be strings, numbers (hexa, integer, float-point), colors, vectors
+and enumerated values.
+
+<P>
+
+<H2><A NAME="SECTION00041000000000000000">
+Boolean</A>
+</H2>
+
+<P>
+Boolean is a binary value (true/false) and it's used for switches
+or on/off properties. The false value is written as 0 and true any other
+number (typically 1).
+<PRE>
+// light is enabled 
+enable_ligth = 1
+
+// shadows are disabled
+enable_shadows = 0
+</PRE>
+
+<P>
+
+<H2><A NAME="SECTION00042000000000000000">
+Numbers</A>
+</H2>
+
+<P>
+Numbers are standard numerical values and can have a decimal part.
+<PRE>
+size = 10
+height = 1.1
+</PRE>
+
+<P>
+
+<H2><A NAME="SECTION00043000000000000000">
+Strings</A>
+</H2>
+
+<P>
+Strings don't use commas and can't contain spaces. String values are typically 
+used for modificator/generator names.
+<PRE>
+name = my_modificator_name
+</PRE>
+
+<P>
+
+<H2><A NAME="SECTION00044000000000000000">
+Colors</A>
+</H2>
+Colors can be defined by three ways - by separated RGB values (0-255),
+by one hexadecimal digit (HTML color) or as a vector (R,G,B). There is an example
+of color_center set to R:33, G:25, B:7
+<PRE>
+// by RGB:
+color_center_r = 33
+color_center_g = 25
+color_center_b = 7
+
+// by one hexa number (RRGGBB)
+color_center = 211907
+
+// by vector (R,G,B)
+color_center = (33,25,7)
+</PRE>
+See the _r,_g and _b suffixes. They are 0 by default.
+
+<P>
+
+<H2><A NAME="SECTION00045000000000000000">
+Vectors</A>
+</H2>
+
+<P>
+Vectors are composed from two or three numbers and they
+can be integer or floating point numbers. For instance, we want to 
+set light_position vector:
+<PRE>
+light_position_x = -1
+light_position_y =  1
+light_position_z = -1
+</PRE>
+See the _x,_y and _z suffixes. They are 0 by default. Another option is
+to use a vector format (x,y,z):
+<PRE>
+light_position = (-1,1,-1)
+</PRE>
+
+<P>
+
+<H2><A NAME="SECTION00046000000000000000">
+Angles</A>
+</H2>
+
+<P>
+An angles are normal numbers (an angle in degrees), from 0 to 360. 
+They are used in polar coordinates and so on.
+<PRE>
+some_angle = 20.6
+</PRE>
+
+<P>
+
+<H2><A NAME="SECTION00047000000000000000">
+Enumerated types</A>
+</H2>
+
+<P>
+Enumerated types are values which can have some predefined values. 
+They are typically used for blocks type descriptions, some types,
+targets, operations and so on.
+<PRE>
+// coordinate type
+type = MODIFICATOR_COORDINATE
+
+// set modificator_target to texture
+modificator_target = TEXTURE
+
+// set modificator_target to geometry
+modificator_target = GEOMETRY
+</PRE>
+
+<P>
+
+<H3><A NAME="SECTION00047100000000000000">
+Aritmetic operation</A>
+</H3>
+It's one of frequently applied enumerated types and defines requested arithmetics
+operation. It's used for coordinates, color/height operations and many more. Aritmetic 
+operation anumerator is used in this context: 
+<PRE>
+result = destination OP source
+</PRE>
+where OP is defined as: 
+<DIV ALIGN="CENTER">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="LEFT">SET</TD>
+<TD ALIGN="LEFT">result = source</TD>
+</TR>
+<TR><TD ALIGN="LEFT">ADD</TD>
+<TD ALIGN="LEFT">result = destination + source</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SUB</TD>
+<TD ALIGN="LEFT">result = destination - source</TD>
+</TR>
+<TR><TD ALIGN="LEFT">MODULATE</TD>
+<TD ALIGN="LEFT">result = destination * source</TD>
+</TR>
+<TR><TD ALIGN="LEFT">MODULATE2X</TD>
+<TD ALIGN="LEFT">result = destination * source * 2</TD>
+</TR>
+</TABLE>
+</DIV>
+
+<P>
+
+<H2><A NAME="SECTION00048000000000000000">
+Intervals</A>
+</H2>
+Some values can be set as interval. If a value is an interval,
+it means it can get any value from the border values. The border values
+are marked as "_min" and "_max" suffixes. Intervals are always used
+with other types (number, angle, color, vector). Intervals can be set 
+as a normal (non-interval) value, too.
+<PRE>
+/* Number intervals
+*/
+// Interval set by only one value so it's always 10
+angle = 10
+
+// Interval set by two border values, 
+// can be any value from 10 to 20
+angle_min = 10
+angle_max = 20 
+
+/* Vector intervals
+*/ 
+// As components
+position_min_x = 10
+position_min_y = 10
+position_min_z = 10
+
+position_max_x = 20
+position_max_y = 20
+position_max_z = 20
+
+// As vectors
+position_min = (10,10,10)
+position_max = (20,20,20)
+
+/* Color intervals
+*/
+// As components
+color_min_r = 10
+color_min_g = 10
+color_min_b = 10
+
+color_max_r = 20
+color_max_g = 20
+color_max_b = 20
+
+// As vectors
+color_min = (10,10,10)
+color_max = (20,20,20)
+
+// As hexadecimal (HTML) colors
+color_min = 0a0a0a
+color_max = 141414
+</PRE>
+
+<P>
+
+<H2><A NAME="SECTION00049000000000000000">
+Coordinates</A>
+</H2>
+Coordinates are 2D area which describes 
+where a modificator is applied. The coordinate is a whole 
+block with "type = MODIFICATOR_COORDINATE", index (will be described later)
+and start and size (or end) 2D vectors. There is an example of area
+which starts at (0,0) and is 40x40 pixels wide:
+<PRE>
+{
+  type = MODIFICATOR_COORDINATE
+
+  index = 0
+
+  start_x = 0
+  start_y = 0
+
+  size_x = 40
+  size_y = 40
+}
+</PRE>
+
+<P>
+
+<H1><A NAME="SECTION00050000000000000000">
+Basic blocks</A>
+</H1>
+An atomic part of the file is a block inside compound braces. It describes one 
+atomic unit inside generator or some generator values. Each block must
+contain its name and type.
+<PRE>
+{
+  name = generator
+  type = GENERATOR_MESH
+
+  /* All generator params come here
+  */
+}
+</PRE>
+Blocks can be nested, like this one:
+<PRE>
+/* Describes pixel generator and its color definition
+*/
+{
+  name = pixel_point
+  type = MODIFICATOR_POINT_SINGLE
+
+  {
+    type = MODIFICATOR_POINT_SINGLE_COLOR
+    color_center = 3b5528
+  }
+}
+</PRE>
+All block examples bellow uses this format:
+<PRE>
+{
+  /* First part contains block name and type:
+  */
+  name = block_name
+  type = block_type
+
+  /*
+    Second part is a list of all posible properties,
+    descriptions and default values:
+
+    [property_type]  property_name
+   
+    If the property_type is an enumerated type, all 
+    posibilies come here:
+    
+    VALUE_1
+    VALUE_2
+    VALUE_3
+  */  
+  property_name = default_value_of_the_property  
+}
+</PRE>
+
+<P>
+
+<H1><A NAME="SECTION00060000000000000000">
+Generator architecture</A>
+</H1>
+Whole generator is designed as a modificator chain. There is one master (root)
+modificator and it passes results to slave modificators. A last modificator 
+in the chain writes results (color pixel, heights) directly to a generator target
+(it can be mesh itself, mesh texture or something else).
+
+<P>
+
+<P>
+
+<DIV ALIGN="CENTER"><A NAME="rect_line_example"></A><A NAME="61"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 1:</STRONG>
+Modificator chain which draws a line composed from single pixels.</CAPTION>
+<TR><TD>
+<DIV ALIGN="CENTER">
+<IMG
+ WIDTH="258" HEIGHT="679" ALIGN="BOTTOM" BORDER="0"
+ SRC="img1.png"
+ ALT="\includegraphics[scale=0.6]{p08.eps}">
+  
+</DIV></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+A picture <A HREF="#rect_line_example">1</A> is a nice example of a modificator chain. The first
+modificator here is the rectangle and it's applied to whole
+target surface because local coordinates are not defined. If the target surface
+is 2048 pixels wide and 1024 pixels high, the rectangle will get <!-- MATH
+ \begin{math}
+(0,0) 
+-> (2048, 1024)
+\end{math}
+ -->
+<IMG
+ WIDTH="156" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img2.png"
+ ALT="$(0,0)
+-&gt; (2048, 1024)$"> coordinates. 
+
+<P>
+By default the rectangle modificator paints whole area by pixels. So it calls
+specified slave modificator (the line here) for each pixel inside the <!-- MATH
+ \begin{math}
+(0,0) 
+-> (2048, 1024)
+\end{math}
+ -->
+<IMG
+ WIDTH="156" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img2.png"
+ ALT="$(0,0)
+-&gt; (2048, 1024)$"> target surface area.
+
+<P>
+A next modificator here is the line and it's drawn for each pixel inside the
+target surface. We can define (by coordinate block inside the line modificator) the line
+size and direction so we can obtain a rectangle filled by single lines. 
+The lines are composed from single pixels which are drawn by 
+the last modificator here - pixel.
+
+<P>
+
+<UL>
+<LI><B>Modificators</B> are atomic generator parts specialized to one task. 
+Each modificator is configured by properties (from the data file), 
+coordinates (from the data file and/or previous modificator) and 
+parameters (from previous modificator) and pastes its results 
+(coordinates, properties, parameters) to another modificator.
+
+<P>
+For instance there is a modificator which generates a line and it 
+pastes the results (coordinates for each single point which lies on the line) 
+to another modificator which draws them.
+
+<P>
+</LI>
+<LI><B>Targets</B> are "final" modificators which transforms 
+results into geometry (mesh) or texture. 
+
+<P>
+</LI>
+<LI><B>Generator</B> launches one or more modificators and 
+specify which targets are used. An output of generator is 
+a complete 3D object with material and texture. 
+
+<P>
+Generator itself can be used as a modificator so
+if we take the line modificator from previous example, 
+the line modificator <!-- MATH
+ \begin{math}
+->
+\end{math}
+ -->
+<IMG
+ WIDTH="33" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img3.png"
+ ALT="$-&gt;$"> pixel modificator <!-- MATH
+ \begin{math}
+->
+\end{math}
+ -->
+<IMG
+ WIDTH="33" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img3.png"
+ ALT="$-&gt;$"> 
+texture target chain will generate single pixels to texture, but line modificator 
+<!-- MATH
+ \begin{math}
+->
+\end{math}
+ -->
+<IMG
+ WIDTH="33" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img3.png"
+ ALT="$-&gt;$"> generator chain will generate complete 3D objects on given coordinates.
+
+<P>
+</LI>
+<LI><B>Generator launcher</B> launches generators.
+
+<P>
+</LI>
+</UL>
+
+<P>
+
+<H1><A NAME="SECTION00070000000000000000">
+Generators</A>
+</H1>
+
+<P>
+
+<H2><A NAME="SECTION00071000000000000000">
+Generator launcher</A>
+</H2>
+Generator launcher defines which generators are performed and their order. 
+It can be only one in the whole data file.
+<PRE>
+{
+  /* Launcher name and type
+  */
+  name = generator_launcher_name
+  type = GENERATOR_LAUNCHER
+
+  /* Performed generators. 
+  */
+  generator_mesh = first_generator
+  generator_mesh = second_generator
+  generator_mesh = third_generator
+}
+</PRE>
+
+<P>
+
+<H2><A NAME="SECTION00072000000000000000">
+Generator</A>
+</H2>
+Generator defines which modifiators are launched, their targets and order. 
+There can be as many generators as you want in a data file and 
+are distinguished by their names:
+<PRE>
+/* A simple generator
+*/
+{
+  /* Generator name and type
+  */
+  name = generator_name
+  type = GENERATOR_MESH
+
+  /*
+    Modificator name and its target:
+    
+    [string]          modificator
+    [enumerated type] modificator_target
+      
+      TEXTURE
+      GEOMETRY
+      GENERATOR_MESH
+      AUX
+  */
+}
+</PRE>
+<H3><A NAME="SECTION00072100000000000000">
+Generator items</A>
+</H3>
+
+<UL>
+<LI><B>modificator</B> - launches a generators with this name.
+</LI>
+<LI><B>modificator_target</B> - defines a target of the generator.
+
+<UL>
+<LI><B>TEXTURE</B> - texture target (color or height)
+</LI>
+<LI><B>GEOMETRY</B> - heights in mesh geometry
+</LI>
+<LI><B>GENERATOR_MESH</B> - target is another generator
+</LI>
+<LI><B>AUX</B> - an auxiliary surface (color or height)
+</LI>
+</UL>
+</LI>
+</UL>
+There is an example of a generator there:
+<PRE>
+/* A simple generator
+*/
+{
+  /* Generator name and type
+  */
+  name = generator_name
+  type = GENERATOR_MESH
+  
+  /* First modificator name and its target
+  */
+  modificator = first_modificator
+  modificator_target = TEXTURE
+  
+  /* Second modificator name and its target
+  */
+  modificator = second_modificator
+  modificator_target = GEOMETRY
+}
+</PRE>
+
+<P>
+
+<H2><A NAME="SECTION00073000000000000000">
+Generated object parameters</A>
+</H2>
+A 3D object generated by single generator is (for now) a flat mesh with
+one big texture. If the texture is too big, it's sliced to smaller parts.
+The object is described by mesh, material and texture block.
+
+<P>
+
+<H3><A NAME="SECTION00073100000000000000">
+Mesh params</A>
+</H3>
+Describes generated mesh parameters like type, size and so on:
+<PRE>
+{
+  name = mesh_name
+  type = MESH_PARAMS
+
+  /*
+    [enumerated value]  mesh_type
+   
+      MESH_LAND
+      MESH_BUNCH
+      MESH_GRASS
+      MESH_BUSH
+  */
+  mesh_type = MESH_LAND
+  
+  /*
+    Mesh dimensions. All values are vectors.
+  
+    [vector] start
+    [vector] diff
+    [vector] size
+  */  
+  start = (0,0,0)
+  diff = (1,1,1)
+  size = (1,1,1)
+  
+  /*
+    Parameters related to bunch:
+    
+    [int, interval]   bunch_slice_num
+    [int, interval]   bunch_slice_segments
+      
+    [float, interval] bunch_slice_x_offset
+    [float, interval] bunch_slice_z_offset
+      
+    [angle, interval] bunch_slice_falling
+    [angle, interval] bunch_segment_falling
+        
+    [int]             bunch_slice_rotation_incemental
+    [angle, interval] bunch_slice_rotation_range
+    [angle, interval] bunch_slice_rotation_step
+  */    
+  bunch_slice_num = 6
+  bunch_slice_segments = 1
+  
+  bunch_slice_x_offset = 0
+  bunch_slice_z_offset = 0
+  
+  bunch_slice_falling = 0
+  bunch_segment_falling = 0
+  
+  bunch_slice_rotation_incemental = 0
+  bunch_slice_rotation_range = 180
+  bunch_slice_rotation_step = 0
+}
+</PRE>
+<H3><A NAME="SECTION00073200000000000000">
+Mesh items</A>
+</H3>
+
+<UL>
+<LI><B>mesh_type</B> - 
+
+<UL>
+<LI><B>MESH_LAND</B> - a flat land
+</LI>
+<LI><B>MESH_BUNCH</B> - a bunch of plates
+</LI>
+<LI><B>MESH_GRASS</B> - not implemented yet
+</LI>
+<LI><B>MESH_BUSH</B> - not implemented yet
+</LI>
+</UL>
+</LI>
+<LI><B>start</B> - mesh location
+</LI>
+<LI><B>diff</B> - a size of one segment
+</LI>
+<LI><B>size</B> - number of segments
+</LI>
+<LI><B>bunch_slice_num</B>
+</LI>
+<LI><B>bunch_slice_segments</B>
+</LI>
+<LI><B>bunch_slice_x_offset</B>
+</LI>
+<LI><B>bunch_slice_z_offset</B>
+</LI>
+<LI><B>bunch_slice_falling</B>
+</LI>
+<LI><B>bunch_segment_falling</B>
+</LI>
+<LI><B>bunch_slice_rotation_incemental</B>
+</LI>
+<LI><B>bunch_slice_rotation_range</B>
+</LI>
+<LI><B>bunch_slice_rotation_step</B>
+</LI>
+</UL>
+
+<P>
+
+<H3><A NAME="SECTION00073300000000000000">
+Material params</A>
+</H3>
+Describes material of a generated mesh:
+<PRE>
+{
+  name = test_material
+  type = MATERIAL_PARAMS
+  
+  /*
+    [boolean] transparent
+    [boolean] double_side
+  */
+  transparent = 0
+  double_side = 0  
+}
+</PRE>
+<H3><A NAME="SECTION00073400000000000000">
+Material items</A>
+</H3>
+
+<UL>
+<LI><B>transparent</B> - transparent material are for bunches
+</LI>
+<LI><B>double_side</B> - double sided material are used by bunches
+</LI>
+</UL>
+
+<P>
+
+<H3><A NAME="SECTION00073500000000000000">
+Texture params</A>
+</H3>
+Describes texture for a generated mesh.
+<PRE>
+{
+  name = test_texture
+  type = TEXTURE_PARAMS
+
+  /*
+    [vector]  texture_size
+    [int]     texture_height
+    [color]   background_color
+    [int]     texture_alpha
+  */
+  texture_size = (512,512)  
+  texture_height = 512
+  background_color = (0,0,0)
+  texture_alpha = 0
+}
+</PRE>
+<H3><A NAME="SECTION00073600000000000000">
+Texture items</A>
+</H3>
+
+<UL>
+<LI><B>texture_size</B>
+</LI>
+<LI><B>texture_height</B>
+</LI>
+<LI><B>background_color</B>
+</LI>
+<LI><B>texture_alpha</B>
+</LI>
+</UL>
+
+<P>
+
+<H1><A NAME="SECTION00080000000000000000">
+Generator targets</A>
+</H1>
+
+<H2><A NAME="SECTION00081000000000000000">
+GEOMETRY target</A>
+</H2>
+
+<H2><A NAME="SECTION00082000000000000000">
+TEXTURE target</A>
+</H2>
+
+<H2><A NAME="SECTION00083000000000000000">
+GENERATOR_MESH target</A>
+</H2>
+
+<H2><A NAME="SECTION00084000000000000000">
+AUX target</A>
+</H2>
+
+<P>
+
+<H1><A NAME="SECTION00090000000000000000">
+Generator modificators</A>
+</H1>
+
+<P>
+
+<H2><A NAME="SECTION00091000000000000000">
+A generic modificator</A>
+</H2>
+There is a basic setup which is included in any modificator.
+All properties are available in all modificators,
+although they do not have to implement all of them
+and some properties can have a different meaning.
+<PRE>
+{
+  /*
+    Basic modificator properties:
+  
+    [boolean] area_inverted
+    [int]     pixel_size
+    
+    [int]     pixel_step
+    [int]     pixel_step_x
+    [int]     pixel_step_y
+  
+    [boolean] pixel_step_random
+    [int]     pixel_step_random_min
+    [int]     pixel_step_random_max
+    
+    [float]   pixel_color_density
+    
+    [boolean] probability_fade
+    [float]   probability_fade_start
+    [float]   probability_fade_stop
+  
+    [boolean] color_fade
+    [float]   color_fade_start
+    [float]   color_fade_stop
+      
+    [boolean] erode_border
+    [float]   erode_factor
+    
+    [float]   size_variator_theshold
+    [float]   size_variator_factor
+  */    
+    
+  /*
+    Mask properties:
+    
+    [string]  mask
+  */
+    
+  /*
+    Slave modificators:
+  
+    [string] modificator_slave
+    [string] modificator_pre
+    [string] modificator_post
+  */  
+
+  /*
+    Local coordinates
+    
+    Each basic setup may contain local coordinate setup. It's defined by nested 
+    MODIFICATOR_COORDINATE block and is described in next chaper.
+  */
+}
+</PRE>
+<H3><A NAME="SECTION00091100000000000000">
+Generic modificator properties</A>
+</H3>
+
+<UL>
+<LI><B>area_inverted</B> - inverted rendering.
+</LI>
+<LI><B>pixel_size</B> - size of single pixel. It's used only by MODIFICATOR_POINT_SINGLE.
+</LI>
+<LI><B>pixel_step</B> - distance between pixels, draws grid instead of solid surface.
+</LI>
+<LI><B>pixel_step_x</B> - distance between pixels in X asis.
+</LI>
+<LI><B>pixel_step_y</B> - distance between pixels in Y asis.
+</LI>
+<LI><B>pixel_step_random</B> - randomize pixel distances.
+</LI>
+<LI><B>pixel_step_random_min, pixel_step_random_max</B> - pixel distance boundary. 
+</LI>
+<LI><B>pixel_color_density</B> - a probability of pixel emission, from
+<!-- MATH
+ \begin{math}
+<0,1>
+\end{math}
+ -->
+<IMG
+ WIDTH="60" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img4.png"
+ ALT="$&lt;0,1&gt;$"> range.
+</LI>
+<LI><B>probability_fade</B> - pixel probability fading, it's used by MODIFICATOR_POINT_EXTENDED only.
+</LI>
+<LI><B>probability_fade_start</B>
+</LI>
+<LI><B>probability_fade_stop</B>
+</LI>
+<LI><B>color_fade</B> - pixel color fading, it's used by MODIFICATOR_POINT_EXTENDED only.
+</LI>
+<LI><B>color_fade_start</B>
+</LI>
+<LI><B>color_fade_stop</B>
+</LI>
+<LI><B>erode_border</B> - pixel border erosion.
+</LI>
+<LI><B>erode_factor</B>
+</LI>
+<LI><B>size_variator_theshold</B> - obsolete.
+</LI>
+<LI><B>size_variator_factor</B> - obsolete.
+</LI>
+<LI><B>mask</B>
+</LI>
+</UL>
+
+<UL>
+<LI><B>modificator_slave</B> - it's called for each coordinate generated 
+by this master modificator.
+</LI>
+<LI><B>modificator_pre</B> - it's called before modificator start 
+and with top coordinates only.
+</LI>
+<LI><B>modificator_post</B> - it's called when modificator finishes 
+and with top coordinates only.
+</LI>
+</UL>
+As for slave modificators - you can define up to five slave modificators for each class.
+Those modificators are called in order how is defined.
+
+<P>
+
+<H2><A NAME="SECTION00092000000000000000">
+Coordinates</A>
+</H2>
+Each modificator is applied to an area which is restricted by "top" coordinates. 
+Top coortinates are defined by master modificator or size of target surface 
+for the first modificator.
+
+<P>
+
+<DIV ALIGN="CENTER"><A NAME="188"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 2:</STRONG>
+Target surface and one modificator.</CAPTION>
+<TR><TD>
+<DIV ALIGN="CENTER">
+<IMG
+ WIDTH="312" HEIGHT="273" ALIGN="BOTTOM" BORDER="0"
+ SRC="img5.png"
+ ALT="\includegraphics[scale=0.6]{p02.eps}">
+  
+</DIV></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+Those "top" coordinates are further modified by local
+coordinate block (randomization, size extension
+and so on).
+
+<P>
+
+<H2><A NAME="SECTION00093000000000000000">
+Coordinate block</A>
+</H2>
+Defines a block with <B>local</B> coordinate configuration. 
+Top coordinates are defined by master modificator or modificator target and
+local coordinates are defined by coordinate block which can be included in
+any modificator.
+
+<P>
+
+<DIV ALIGN="CENTER"><A NAME="196"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 3:</STRONG>
+An example of top and local coordinates composition.</CAPTION>
+<TR><TD>
+<DIV ALIGN="CENTER">
+<IMG
+ WIDTH="334" HEIGHT="267" ALIGN="BOTTOM" BORDER="0"
+ SRC="img6.png"
+ ALT="\includegraphics[scale=0.6]{p06.eps}">
+  
+</DIV></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+Coordinate block defines operation between top and local coordinates, whether the local
+ones are generated (randomized) or not and so forth. If there are more than one
+coordinate block, the modificator is called for each of them.
+
+<P>
+
+<H3><A NAME="SECTION00093100000000000000">
+Coordinate setup properties</A>
+</H3>
+<PRE>
+{
+  /*
+    Local coordinates setup:
+    
+    [aritmetic operation] coordinates_operation 
+    [boolean]             coordinates_random
+    [int]                 coordinates_random_num
+    [enumerated type]     modificator_start
+    [enumerated type]     modificator_size
+            
+      COORD_CURRENT
+      COORD_LAST_START
+      COORD_LAST_SIZE
+      COORD_LAST_START_SIZE      
+  */  
+  coordinates_operation = OPERATION_SET
+  coordinates_random = 0
+  coordinates_random_num = 0
+  modificator_start = COORD_CURRENT
+  modificator_size = COORD_CURRENT
+  
+  /*
+    First coordinates blocks:
+  */
+  {
+    type = MODIFICATOR_COORDINATE
+    
+    /*
+      [vector] start
+      [vector] size
+      [int]    index
+    */
+  }
+  
+  /*
+    Second coordinates blocks:
+  */
+  {
+    type = MODIFICATOR_COORDINATE
+    
+    /*
+      [vector] start
+      [vector] size
+      [int]    index
+    */
+  }
+  
+  /*
+    Third one...
+  */
+  {
+    [...]
+  }
+}
+</PRE>
+<H3><A NAME="SECTION00093200000000000000">
+Coordinate block properties</A>
+</H3>
+
+<UL>
+<LI><B>coordinates_operation</B> - defines operation between top and local coordinates.
+</LI>
+<LI><B>coordinates_random</B> - if it's set to 1, local coordinates are generated by random number
+generator in boundaries given by coordinates with index 0 and index 1 (see bellow).
+</LI>
+<LI><B>coordinates_random_num</B> - number of generated local coordinates.    
+</LI>
+<LI><B>modificator_start, modificator_size</B> - it defines parts of top 
+coordinates (start and size parts) for current coordinates_operation. 
+It can be top coordinates from previous modificator (COORD_CURRENT) or 
+result of last top and local coordinates composition:
+
+<UL>
+<LI><B>COORD_CURRENT</B> - current top coordinates
+</LI>
+<LI><B>COORD_LAST_START</B> - start of last coordinate composition (start part)
+</LI>
+<LI><B>COORD_LAST_SIZE</B> - size of last coordinate composition (size part)
+</LI>
+<LI><B>COORD_LAST_START_SIZE</B> - endpoint of last coordinate composition (start+size parts).
+It's userful for generating objects which have to be connected (e.g. objects strips).
+</LI>
+</UL>
+</LI>
+</UL>
+<H3><A NAME="SECTION00093300000000000000">
+Modificator coordinate sub-block properties</A>
+</H3>
+
+<UL>
+<LI><B>start</B> - coordinate start
+</LI>
+<LI><B>size</B> - coordinate size, endpoint is calculated as start+size
+</LI>
+<LI><B>index</B> - coordinate index (used by randomized local coordinates, see bellow)
+</LI>
+</UL>
+
+<P>
+
+<DIV ALIGN="CENTER"><A NAME="224"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 4:</STRONG>
+An example of modificator chain with local coordinate setup.</CAPTION>
+<TR><TD>
+<DIV ALIGN="CENTER">
+<IMG
+ WIDTH="258" HEIGHT="410" ALIGN="BOTTOM" BORDER="0"
+ SRC="img7.png"
+ ALT="\includegraphics[scale=0.6]{p05.eps}">
+  
+</DIV></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+
+<H2><A NAME="SECTION00094000000000000000">
+Modificator parameters</A>
+</H2>
+
+<P>
+Parameters are float point values in <!-- MATH
+ \begin{math}
+<0,1>
+\end{math}
+ -->
+<IMG
+ WIDTH="60" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img4.png"
+ ALT="$&lt;0,1&gt;$"> range which are passed between
+modificators on parameter stack. If a modificator generates any parameter, the
+parameter is added on top of the parameter stack. If a modificator does not
+emit any parameter the stack is passed without modification.
+
+<P>
+The parameters and are typically used by simple point modificator 
+for color/height generation and so on. For instance, there's a fractal
+modificator which generates a height map. The fractal modificator calls
+a slave modificator (simple point modificator for instance) for each generated 
+pixel and as parameter passes pixel height. So the slave pixel modificator can 
+draw pixels by color adjusted by pixel height. Another example showns 
+figure <A HREF="#rect_line_example">1</A>.
+
+<P>
+
+<H3><A NAME="SECTION00094100000000000000">
+Modificator parameters type</A>
+</H3>
+
+<P>
+Modificator parameters are defined by modificator parameter enum type:
+<DIV ALIGN="CENTER">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="LEFT">PARAM_PREV_0</TD>
+<TD ALIGN="LEFT">a parameter on top of the parameter stack</TD>
+</TR>
+<TR><TD ALIGN="LEFT">PARAM_PREV_1</TD>
+<TD ALIGN="LEFT">a second one</TD>
+</TR>
+<TR><TD ALIGN="LEFT">PARAM_PREV_2</TD>
+<TD ALIGN="LEFT">third...</TD>
+</TR>
+<TR><TD ALIGN="LEFT">PARAM_PREV_3</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT">PARAM_PREV_4</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT">PARAM_SCATTER</TD>
+<TD ALIGN="LEFT">a random number from <!-- MATH
+ \begin{math}
+<-1,1>
+\end{math}
+ -->
+<IMG
+ WIDTH="73" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;-1,1&gt;$"> range</TD>
+</TR>
+<TR><TD ALIGN="LEFT">PARAM_SCATTER_HALF</TD>
+<TD ALIGN="LEFT">a random number from <!-- MATH
+ \begin{math}
+<0,1>
+\end{math}
+ -->
+<IMG
+ WIDTH="60" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img4.png"
+ ALT="$&lt;0,1&gt;$"> range</TD>
+</TR>
+<TR><TD ALIGN="LEFT">PARAM_HEIGHT_MAP</TD>
+<TD ALIGN="LEFT">not implemented yet</TD>
+</TR>
+<TR><TD ALIGN="LEFT">PARAM_HEIGHT_MESH</TD>
+<TD ALIGN="LEFT">not implemented yet</TD>
+</TR>
+<TR><TD ALIGN="LEFT">DEFAULT</TD>
+<TD ALIGN="LEFT">an alias for PARAM_SCATTER_HALF</TD>
+</TR>
+</TABLE>
+</DIV>
+
+<P>
+
+<H2><A NAME="SECTION00095000000000000000">
+Point modificators</A>
+</H2>
+
+<P>
+Point modificators are designed as last modificators and usually write
+data directly to targets (height to mesh geometry or color/heights to texture). 
+
+<P>
+
+<H3><A NAME="SECTION00095100000000000000">
+Single point modificator</A>
+</H3>
+
+<P>
+Single point modificator writes to target (slave modificator
+or texture target) only one single point. Its size is always 1x1 so for instance
+if it gets <!-- MATH
+ \begin{math}
+(20,20) -> (100,100)
+\end{math}
+ -->
+<IMG
+ WIDTH="156" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$(20,20) -&gt; (100,100)$"> coordinate 
+from master modificator, it writes only single pixel to <!-- MATH
+ \begin{math}
+(20,20)
+\end{math}
+ -->
+<IMG
+ WIDTH="55" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img10.png"
+ ALT="$(20,20)$"> 
+with <!-- MATH
+ \begin{math}
+(1,1)
+\end{math}
+ -->
+<IMG
+ WIDTH="39" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img11.png"
+ ALT="$(1,1)$"> size. Pixel_size property is ignored 
+by this modificator.
+
+<P>
+The single point modificator consists from basic setup in main block and
+subblocks. The subblocks define particular color/height operations and 
+are subsequently applied to a temporary color/height value. Number of 
+color/height subblocks is not limited.
+
+<P>
+This temporary color is get from modificator target, goes through subblocks
+and is applied back to modificator target (as color/height to texture or
+height to mesh geometry). 
+
+<P>
+
+<H3><A NAME="SECTION00095200000000000000">
+Single point modificator block contains</A>
+</H3>
+<PRE>
+{
+  name = some_modificator_name
+  type = MODIFICATOR_POINT_SINGLE
+
+  /*    
+    Generator type:
+  
+    [enumerated type]  generator_type
+            
+      GENERATOR_GAUSS
+      GENERATOR_RAND
+      
+    [boolean]          generator_separated     
+  */
+  generator_type = GENERATOR_GAUSS
+  generator_separated = 0
+    
+  /*
+    Color operations:
+    
+    [aritmetic operation]  color_operation        
+    [bool]                 color_blend
+  */      
+  color_operation = SET
+  color_blend = 0
+  
+  /*
+    Height operation:
+    
+    [aritmetic operation]  height_operation
+   */
+  height_operation = SET
+
+  /*
+    Generated colors can be crop:
+  
+    [boolean]               color_borders
+    [color]                 color_border_min
+    [color]                 color_border_max
+   */
+  color_borders = 0
+  color_border_min = (0,0,0)
+  color_border_max = (255,255,255)
+  
+  /*
+    Color tables:
+          
+    [string]                color_table
+    [string]                color_table_center
+    [string]                color_table_delta    
+  */
+  
+  /*
+    Color subblock describes single color operation.
+  */
+  {
+    type = MODIFICATOR_POINT_SINGLE_COLOR
+    [...]
+  }
+  
+  /*
+    Height subblock describes single height operation.
+  */
+  {
+    type = MODIFICATOR_POINT_SINGLE_HEIGHT
+    [...]
+  }
+}
+</PRE>
+<H3><A NAME="SECTION00095300000000000000">
+Single point modificator properties</A>
+</H3>
+
+<UL>
+<LI><B>generator_type</B> - it's a generator type used for PARAM_SCATTER 
+and PARAM_SCATTER_HALF randomisation.
+
+<UL>
+<LI><B>GENERATOR_GAUSS</B>
+</LI>
+<LI><B>GENERATOR_RAND</B>
+</LI>
+</UL>
+</LI>
+<LI><B>generator_separated</B> - for each cycle in color/height box (see bellow) is
+generated a new random value
+</LI>
+<LI><B>color_operation</B> - color operation between target and color pixels 
+generated by this modificator
+</LI>
+<LI><B>color_blend</B> - blend the generated pixels
+</LI>
+<LI><B>height_operation</B> - height operation between target and heights
+generated by this modificator
+</LI>
+<LI><B>color_borders</B> - are generated colors shrink to this range?
+</LI>
+<LI><B>color_border_min</B> - minimal border color
+</LI>
+<LI><B>color_border_max</B> - maximal border color
+</LI>
+</UL>
+Color table can define a colors which can be used for color generation. 
+For instance you can take a picture and generate pixels with colors from
+the image. If the color table is active, for each generated
+color is located the nearest color in the image (in RGB) and the nearest 
+color is used as a result instead of the generated one.
+
+<UL>
+<LI><B>color_table</B> - Image file (png, jpg,...) witch will be used for 
+color table composition. Final generated colors are altered with colors from this table.
+</LI>
+<LI><B>color_table_center</B> - Image file (png, jpg,...) witch will be used 
+for color table composition. Center colors (from each color box) are altered 
+with colors from this table.
+</LI>
+<LI><B>color_table_delta</B> - Image file (png, jpg,...) witch will be used 
+for color table composition. Delta colors (from each color box) are altered 
+with colors from this table.
+</LI>
+</UL>
+
+<P>
+
+<H3><A NAME="SECTION00095400000000000000">
+Generated parameters</A>
+</H3>
+
+<P>
+None.
+
+<P>
+
+<H3><A NAME="SECTION00095500000000000000">
+Single point modificator - color subblock</A>
+</H3>
+
+<P>
+Color subblocks defines a single color operation and a result
+is a single color which is applied to a temporary color. The temporary color
+is loaded from target surface and when all color blocks are 
+processed it's written back to target surface.
+
+<P>
+
+<DIV ALIGN="CENTER"><A NAME="color_sub_block_workflow"></A><A NAME="277"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 5:</STRONG>
+Color sub-block workflow.</CAPTION>
+<TR><TD>
+<DIV ALIGN="CENTER">
+<IMG
+ WIDTH="204" HEIGHT="429" ALIGN="BOTTOM" BORDER="0"
+ SRC="img12.png"
+ ALT="\includegraphics[scale=0.6]{p04.eps}">
+  
+</DIV></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+
+<H3><A NAME="SECTION00095600000000000000">
+Color subblock scheme</A>
+</H3>
+
+<P>
+The color subblock is applied to input color
+and passes the result as an output color. The color operation 
+applied to the input color is contoled by another input - 
+a modifiator parameter. This parameter can be a random number, a parameter
+from previous modifiator and so on (see <B>Modificator parameters</B> chaper).
+
+<P>
+
+<DIV ALIGN="CENTER"><A NAME="color_sub_block_flow"></A><A NAME="286"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 6:</STRONG>
+Color sub-block flow.</CAPTION>
+<TR><TD>
+<DIV ALIGN="CENTER">
+<IMG
+ WIDTH="316" HEIGHT="193" ALIGN="BOTTOM" BORDER="0"
+ SRC="img13.png"
+ ALT="\includegraphics[scale=0.6]{p07.eps}">
+  
+</DIV></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+
+<H3><A NAME="SECTION00095700000000000000">
+Color output calculation</A>
+</H3>
+
+<P>
+There is a figure <A HREF="#color_output_calculation">7</A> with detailed schema 
+how the color subblock output is calculated. There are two main components - 
+<B>COLOR_DELTA</B> which is directly defined in the block and 
+<B>COLOR_CENTER_CURRENT</B> which will be described later.
+
+<P>
+The <B>COLOR_DELTA</B> parameter is scaled by <B>COLOR_DELTA_SCALE</B> 
+and then by modifiator parameter defined by <B>color_delta_parameter</B>. 
+A color operation defined by <B>color_operation</B> is calculated 
+and a result of this is combined with input color (by <B>final_operation</B>).
+
+<P>
+This operation is executed for every pixel which is processed by 
+this modificator.
+
+<P>
+
+<DIV ALIGN="CENTER"><A NAME="color_output_calculation"></A><A NAME="302"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 7:</STRONG>
+Color output calculation.</CAPTION>
+<TR><TD>
+<DIV ALIGN="CENTER">
+<IMG
+ WIDTH="446" HEIGHT="427" ALIGN="BOTTOM" BORDER="0"
+ SRC="img14.png"
+ ALT="\includegraphics[scale=0.6]{p09.eps}">
+  
+</DIV></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+
+<H3><A NAME="SECTION00095800000000000000">
+Color center current calculation</A>
+</H3>
+
+<P>
+<B>COLOR_CENTER_CURRENT</B> which is referenced in previous paragraph is 
+calculated only once before the pixels are emitted and then remains constant. 
+It's useful when you want to set a background color whith some
+variation.
+
+<P>
+
+<DIV ALIGN="CENTER"><A NAME="color_center_current_calculation"></A><A NAME="311"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 8:</STRONG>
+Color center current calculation.</CAPTION>
+<TR><TD>
+<DIV ALIGN="CENTER">
+<IMG
+ WIDTH="350" HEIGHT="349" ALIGN="BOTTOM" BORDER="0"
+ SRC="img15.png"
+ ALT="\includegraphics[scale=0.6]{p10.eps}">
+  
+</DIV></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+
+<H3><A NAME="SECTION00095900000000000000">
+Color subblock format</A>
+</H3>
+<PRE>
+{
+  type = MODIFICATOR_POINT_SINGLE_COLOR
+
+  /*  
+    [aritmetic operation]   final_operation
+    [boolean]               final_blend
+    [modificator parameter] final_blend_parameter
+  */
+  final_operation = SET
+  final_blend = 0
+  final_blend_parameter = DEFAULT
+  
+  /*
+    [aritmetic operation]   color_operation
+    [boolean]               color_blend
+    [modificator parameter] color_blend_parameter
+  */
+  color_operation = ADD
+  color_blend = 0
+  color_blend_parameter = DEFAULT
+  
+  /*
+    [color]                 color_center
+    [float]                 color_center_scale
+    [float]                 color_center_delta
+    [modificator parameter] color_center_parameter
+  */
+  color_center = (0,0,0,0)
+  color_center_scale = 1
+  color_center_delta = (0,0,0,0)
+  color_center_parameter = PARAM_SCATTER_HALF;
+  
+  /*
+    [color]                 color_delta
+    [float]                 color_delta_scale
+    [modificator parameter] color_delta_parameter
+  */
+  color_delta = (0,0,0,0)
+  color_delta_scale = 1
+  color_delta_parameter = PARAM_SCATTER_HALF
+  
+  /*
+    Shortcuts for color definition:
+    
+    [color]                 color_min
+    [color]                 color_max
+
+    [color]                 color_center_min
+    [color]                 color_center_max
+  */  
+}
+</PRE>
+<H3><A NAME="SECTION000951000000000000000">
+Color subblock properties</A>
+</H3>
+Color operations:
+
+<UL>
+<LI><B>final_operation</B> - a color operation between color input and 
+current color block result.
+</LI>
+<LI><B>final_blend</B> - enable color blending for <B>final_operation</B>.
+</LI>
+<LI><B>final_blend_parameter</B> - a parameter for <B>final_operation</B> blending.
+</LI>
+<LI><B>color_operation</B> - a color operation between current color center and
+color delta.
+</LI>
+<LI><B>color_blend</B> - enable color blending for this operation.
+</LI>
+<LI><B>color_blend_parameter</B> - a parameter used for this color blending.
+</LI>
+</UL>
+<B>COLOR_CENTER_CURRENT</B> calculation:
+
+<UL>
+<LI><B>color_center</B>
+</LI>
+<LI><B>color_center_scale</B>
+</LI>
+<LI><B>color_center_delta</B>
+</LI>
+<LI><B>color_center_parameter</B>
+</LI>
+</UL>
+Parameters related to <B>color_operation</B>:
+
+<UL>
+<LI><B>color_delta</B>
+</LI>
+<LI><B>color_delta_scale</B>
+</LI>
+<LI><B>color_delta_parameter</B>
+</LI>
+</UL>
+Shortcuts for color definition:
+
+<UL>
+<LI><B>color_min, color_max</B> - a shortcut for color_center and color_delta
+definition:
+<PRE>
+color_center = color_min
+color_delta = (color_max-color_min)
+</PRE>
+</LI>
+<LI><B>color_center_min, color_center_max</B> - a shortcut for color_center
+and color_center_delta definition:
+<PRE>
+color_center = color_center_min
+color_center_delta = (color_center_max-color_center_min)
+</PRE>
+</LI>
+</UL>
+
+<P>
+
+<H3><A NAME="SECTION000951100000000000000">
+Single point modificator - height subblock</A>
+</H3>
+
+<P>
+Height subblock is similar to color subblock but
+with float point numbers (from 0 to 1). Final height
+is calculated as:
+<PRE>
+height_delta_tmp = height_delta * height_parameter
+height_current = height_center (height_operation) height_delta_tmp;
+height_output = height_input (final_operation) height_current;
+</PRE>
+Where <B>height_input</B> is a height loaded from target surface or previous
+block and <B>height_output</B> is a final result.
+
+<P>
+
+<H3><A NAME="SECTION000951200000000000000">
+Height subblock structure</A>
+</H3>
+<PRE>
+{
+  type = MODIFICATOR_POINT_SINGLE_HEIGHT
+
+  /*    
+    [float]                 height_center
+    [float]                 height_delta
+  */
+  height_center = 0
+  height_delta = 0
+
+  /*
+    [modificator parameter] height_parameter
+  */  
+  height_parameter = PARAM_SCATTER_HALF
+  
+  /*  
+    [aritmetic operation]   height_operation
+  */
+  height_operation = ADD
+  
+  /*  
+    [aritmetic operation]   final_operation
+  */
+  final_operation = SET
+  
+  /*
+    [float]                 height_min
+    [float]                 height_max    
+  */  
+}
+</PRE>
+<H3><A NAME="SECTION000951300000000000000">
+Height subblock properties</A>
+</H3>
+
+<UL>
+<LI><B>height_center</B>
+</LI>
+<LI><B>height_delta</B>
+</LI>
+<LI><B>height_parameter</B>
+</LI>
+<LI><B>height_operation</B>
+</LI>
+<LI><B>final_operation</B>
+</LI>
+</UL>
+Shortcuts for height definition:
+
+<UL>
+<LI><B>height_min, height_max</B> - it's a shortcut for <B>height_center</B> and 
+<B>height_delta</B> definition.
+<PRE>
+height_center = height_min
+height_delta = (height_max - height_min)
+</PRE>
+</LI>
+</UL>
+
+<P>
+
+<H3><A NAME="SECTION000951400000000000000">
+Extended point modificator</A>
+</H3>
+
+<P>
+Extended point modificator draws a point (circle)
+from single pixels. The pixel generation is controlled by 
+properties of generic (basic) modificator.
+<PRE>
+{
+  name = some_modificator_name
+  type = MODIFICATOR_POINT_EXTENDED
+}
+</PRE>
+<H3><A NAME="SECTION000951500000000000000">
+Extended point modificator properties</A>
+</H3>
+Extended point modificator does not have any specific properties.
+
+<H3><A NAME="SECTION000951600000000000000">
+Generated parameters</A>
+</H3>
+
+<P>
+None.
+
+<P>
+
+<H2><A NAME="SECTION00096000000000000000">
+Rectangle modificator</A>
+</H2>
+
+<P>
+Rectangle modificator generates points in whole area defined by coordinates.
+<PRE>
+{
+  name = some_modificator_name
+  type = MODIFICATOR_RECT
+}
+</PRE>
+<H3><A NAME="SECTION00096100000000000000">
+Rectangle modificator properties</A>
+</H3>
+Extended point modificator does not have any specific properties.
+
+<H3><A NAME="SECTION00096200000000000000">
+Generated parameters</A>
+</H3>
+
+<P>
+None.
+
+<P>
+
+<H2><A NAME="SECTION00097000000000000000">
+Height modificators</A>
+</H2>
+
+<P>
+Heightmap modifiators are used for height or parameter generation.
+
+<P>
+
+<H3><A NAME="SECTION00097100000000000000">
+Height map modificator</A>
+</H3>
+
+<P>
+Heightmap modifiator is a simple heigtmap which can be loaded from a bitmap
+file, a target surface or generated by a fractal generator. Its typically useful
+as a master modificator for MODIFICATOR_POINT_SINGLE, where pixel height
+is inserted to parameter stack, passed to MODIFICATOR_POINT_SINGLE modifiator
+and used for color shift there.
+
+<P>
+<PRE>
+{
+  name = some_modificator_name
+  type = MODIFICATOR_HEIGHT_MAP
+  
+  /*    
+    [string]    height_bitmap
+    [string]    height_source
+  */
+  
+  /*
+    [boolean]   heightmap_intensity
+  */
+  heightmap_intensity = 1
+  
+  /*    
+    [float]     height_multiplier
+    [float]     height_shift
+  */
+  height_multiplier = 1
+  height_shift = 0
+  
+  /*
+    [float]     height_range_min
+    [float]     height_range_max
+  */  
+  height_range_min = 0
+  height_range_max = 1
+  
+  /*  
+    [boolean]   scale_target
+    [int]       scale_width
+    [int]       scale_height
+  */
+  heightmap_scale = 0
+  height_scale_width = 0
+  height_scale_height = 0
+}
+</PRE>
+<H3><A NAME="SECTION00097200000000000000">
+Height map modificator properties</A>
+</H3>
+
+<UL>
+<LI><B>height_bitmap</B> - Image file (png, jpg,...) witch will be used as 
+source for heigtmap, where height is computed from color intensity.
+</LI>
+<LI><B>height_source</B> - a name of modifiator where the heightmap is obtained from.
+</LI>
+<LI><B>heightmap_intensity</B> - calculate illumination for each pixel an pass it
+to parameter stack.
+</LI>
+<LI><B>height_multiplier, height_shift</B> - pixel height modificators:
+<PRE>
+height_final = height_pixel * height_multiplier + height_shift
+</PRE>
+</LI>
+<LI><B>height_range_min, height_range_max</B> - height range filter. Pixels
+outside this range are ignored.
+</LI>
+<LI><B>scale_target</B>
+</LI>
+<LI><B>scale_width</B>
+</LI>
+<LI><B>scale_height</B>
+</LI>
+</UL>
+
+<P>
+
+<H3><A NAME="SECTION00097300000000000000">
+Generated parameters</A>
+</H3>
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="LEFT">Parameter</TD>
+<TD ALIGN="LEFT">Meaning</TD>
+</TR>
+<TR><TD ALIGN="LEFT">0</TD>
+<TD ALIGN="LEFT">relative pixel height</TD>
+</TR>
+<TR><TD ALIGN="LEFT">1</TD>
+<TD ALIGN="LEFT">pixel height</TD>
+</TR>
+<TR><TD ALIGN="LEFT">2</TD>
+<TD ALIGN="LEFT">pixel intensity</TD>
+</TR>
+</TABLE>
+
+<P>
+
+<H4><A NAME="SECTION00097310000000000000">
+Relative pixel height</A>
+</H4>
+means that pixel height is clamped to <!-- MATH
+ \begin{math}
+{\bf <height\_range\_min, height\_range\_max>}
+\end{math}
+ -->
+<IMG
+ WIDTH="323" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img16.png"
+ ALT="${\bf &lt;height\_range\_min, height\_range\_max&gt;}$">
+ranges and adjusted by <B>height_multiplier</B> and <B>height_shift</B>.
+The formula is:
+<PRE>
+height_translated = (height_pixel - height_range_min) / (height_range_max - height_range_min)
+height_output = height_translated*height_multiplier + height_shift
+</PRE>
+
+<P>
+
+<H4><A NAME="SECTION00097320000000000000">
+Pixel height</A>
+</H4> is an absolute pixel height. 
+If <B>height_range_min = 0.5</B> and <B>height_range_max = 0.8</B>,
+all pixels are at this range <!-- MATH
+ \begin{math}
+<0.5,0.8>
+\end{math}
+ -->
+<IMG
+ WIDTH="85" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img17.png"
+ ALT="$&lt;0.5,0.8&gt;$">.
+
+<P>
+
+<H4><A NAME="SECTION00097330000000000000">
+Pixel intensity</A>
+</H4> means that a normal vector is 
+calculated and its dot-product with light vector 
+is passed here. The light vector is (0,1,0) by default.
+
+<P>
+
+<H3><A NAME="SECTION00097400000000000000">
+Mid-point modificator</A>
+</H3>
+
+<P>
+Mid point fractal generator is derived from heightmap modificator
+so its result is a heighmap. An output of fractal generator is written to 
+temporary heighmap modificator, normalized to <!-- MATH
+ \begin{math}
+<0,1>
+\end{math}
+ -->
+<IMG
+ WIDTH="60" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img4.png"
+ ALT="$&lt;0,1&gt;$"> 
+range and processed as a normal heighmap, so all properties of heightmap 
+modificator can be used.
+
+<P>
+<PRE>
+{
+  name = some_modificator_name
+  type = MODIFICATOR_FRACTAL
+
+  /*
+    [float]             fractal_hurst
+  */
+  generator_hurst = 0.6
+  
+  /*
+    [float]             fractal_delta
+    [float]             fractal_center
+  */
+  fractal_delta = 1
+  fractal_center = 0
+  
+  /*   
+    [float]             correction_center
+    [float]             correction_border
+    
+    [float]             border_start
+    [float]             perturbation
+    
+    [int]               pixel_distance
+    [int]               pixel_fill
+    
+    [int]               pixel_filter
+    [int]               pixel_filter_num
+    
+    [int]               generation_border
+  */
+  border_start = 0
+  pixel_distance = 1
+  pixel_fill = TRUE
+  pixel_filter = FALSE
+  pixel_filter_num = 0
+  generation_border = 0
+  
+  /*
+    [enumerated type]   interpolation
+      MID_POINT
+      LINE_MIN
+      LINE_MAX
+      LINE_CENTER
+      LINE_PRIORITY_HIGH
+      LINE_PRIORITY_LOW
+      LINE_RANGE_HIGH
+      LINE_RANGE_LOW
+      LINE_RANDOM
+      
+    [enumerated type]   interpolation_first
+      MID_POINT
+      LINE_MIN
+      LINE_MAX
+      LINE_CENTER
+      LINE_PRIORITY_HIGH
+      LINE_PRIORITY_LOW
+      LINE_RANGE_HIGH
+      LINE_RANGE_LOW
+      LINE_RANDOM
+
+    [enumerated type]   interpolation_second
+      MID_POINT
+      LINE_MIN
+      LINE_MAX
+      LINE_CENTER
+      LINE_PRIORITY_HIGH
+      LINE_PRIORITY_LOW
+      LINE_RANGE_HIGH
+      LINE_RANGE_LOW
+      LINE_RANDOM
+        
+    [int]               interpolation_border
+  */  
+  interpolation = LINE_MAX
+  interpolation_border = 0
+}
+</PRE>
+<H3><A NAME="SECTION00097500000000000000">
+Mid-point modificator properties</A>
+</H3>
+
+<UL>
+<LI><B>fractal_hurst</B> - A hurst coeficient for fractal generator. Low value 
+(around 0.2) means great height variation, high values (around 0.8) produces soft shapes.
+</LI>
+<LI><B>fractal_delta, fractal_center</B> - An output height is produced as
+<PRE>
+height_output = fractal_delta * height_generated + fractal_center;
+</PRE>
+</LI>
+<LI><B>correction_center</B> - Height value used for center pixel. It's off by default.
+</LI>
+<LI><B>correction_border</B> - Height value used for border pixels. It's off by default.
+</LI>
+<LI><B>border_start</B> - Height values of first four corner points. It's 0 by default.
+</LI>
+<LI><B>pixel_distance</B> - If a distance among the four pixels is smaller than this value,
+pixels are not generated. It's 0 by default so the whole area is filled pixel by pixel by default.
+</LI>
+<LI><B>generation_border</B> - If a distance among the four pixels is smaller than this value,
+pixels are only interpolated and no new height is added by fractal generator.
+</LI>
+<LI><B>pixel_fill</B> - If it's TRUE, all unset pixels (for instance when 
+<!-- MATH
+ \begin{math}
+{\bf pixel\_distance} > 0)
+\end{math}
+ -->
+<IMG
+ WIDTH="148" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img18.png"
+ ALT="${\bf pixel\_distance} &gt; 0)$"> are interpolated for their neighbours.
+</LI>
+<LI><B>pixel_filter, pixel_filter_num</B> - Filter generated pixels. Off by default.
+</LI>
+<LI><B>interpolation</B> - A new height values are derived
+from their four neighbor points and you can define how.
+
+<UL>
+<LI><B>MID_POINT</B> - An averange value is calculated from all four points.
+</LI>
+<LI><B>LINE_*</B> - Only two opposite points are interpolated so we have two 
+height values (h1,h2) and the parameter defines which one is used.
+
+<UL>
+<LI><B>LINE_MIN</B> - Minimal value from (h1,h2) is choosen.
+</LI>
+<LI><B>LINE_MAX</B> - Maximal value from (h1,h2) is choosen
+</LI>
+<LI><B>LINE_CENTER</B> - A value from (h1,h2) which is closer to <B>MID_POINT</B> is choosen.
+</LI>
+<LI><B>LINE_PRIORITY_HIGH</B> - A newer value from (h1,h2) is used.
+</LI>
+<LI><B>LINE_PRIORITY_LOW</B> - An older value from (h1,h2) is used.
+</LI>
+<LI><B>LINE_RANGE_HIGH</B> - It's used a value from (h1,h2) which has been calculated
+from wider range.
+</LI>
+<LI><B>LINE_RANGE_LOW</B> - It's used a value from (h1,h2) which has been calculated
+from shorten range.
+</LI>
+<LI><B>LINE_RANDOM</B> - A random value from (h1,h2) is picked.
+</LI>
+</UL>
+</LI>
+</UL>
+</LI>
+<LI><B>interpolation_first, interpolation_second</B>
+- You can choose different interpolation methods for different degree of interpolation. 
+<B>Interpolation_first</B> is used for initial interpolation steps and 
+<B>interpolation_second</B> for the final ones. 
+</LI>
+<LI><B>interpolation_border</B>
+defines a boundary when <B>interpolation_first</B> is switched to <B>interpolation_second</B> 
+and is backward oriented, so if <B>interpolation_border</B> = 3 it means the interpolation
+style defined by <B>interpolation_second</B> is used by last three interpolations.
+</LI>
+<LI><B>perturbation</B> - A random value is added to interpolated values. The formula is:
+<PRE>
+range = MAX(v1, v2, v3, v4) - MIN(v1, v2, v3, v4)
+new_height = new_height + rand() * range * perturbation;
+</PRE>
+<B>v11, v12, v21, v22</B> are four points used for new pixel generation, 
+<B>rand()</B> is a random number generator with <!-- MATH
+ \begin{math}
+<-1,1>
+\end{math}
+ -->
+<IMG
+ WIDTH="73" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;-1,1&gt;$"> range.
+It's off by default.
+</LI>
+</UL>
+
+<P>
+
+<H3><A NAME="SECTION00097600000000000000">
+Generated parameters</A>
+</H3>
+
+<P>
+Are the same as for heightmap modificator.
+
+<P>
+
+<H3><A NAME="SECTION00097700000000000000">
+Perlin noise modificator</A>
+</H3>
+
+<P>
+Perlin noise generator. It's derived from heightmap modificator
+so its result is a heighmap. It includes all MODIFICATOR_HEIGHT_MAP modificator 
+parameters plus some extra.
+
+<P>
+<PRE>
+{
+  name = some_modificator_name
+  type = MODIFICATOR_PERLIN
+
+  /*
+    [float]             perlin_persistence
+    [int]               perlin_octaves_start
+    [int]               perlin_octaves
+  */
+  perlin_persistence = 0.8
+  perlin_octaves_start = 0
+  perlin_octaves = 30
+}
+</PRE>
+<H3><A NAME="SECTION00097800000000000000">
+Perlin noise modificator properties</A>
+</H3>
+
+<UL>
+<LI><B>perlin_persistence</B> - the most inportant parameter, it defines how frequently
+is the pattern changed.
+</LI>
+<LI><B>perlin_octaves_start, perlin_octaves</B> - First octave which is generated 
+is <B>perlin_octaves_start</B> and only <B>perlin_octaves</B> are generated totaly.
+</LI>
+</UL>
+
+<P>
+
+<H3><A NAME="SECTION00097900000000000000">
+Generated parameters</A>
+</H3>
+Are the same as for heightmap modificator.
+
+<P>
+
+<H2><A NAME="SECTION00098000000000000000">
+Line modificators</A>
+</H2>
+
+<H3><A NAME="SECTION00098100000000000000">
+Single line modificator</A>
+</H3>
+
+<P>
+Draws line from start point to start+size point.
+
+<P>
+<PRE>
+{
+  name = some_modificator_name
+  type = MODIFICATOR_LINE
+
+  /*
+    [int]       line_size    
+  */
+  line_size = 1
+}
+</PRE>
+<H3><A NAME="SECTION00098200000000000000">
+Line modificator properties</A>
+</H3>
+
+<UL>
+<LI><B>line_size</B> - line width in pixels.
+</LI>
+</UL>
+
+<P>
+
+<H3><A NAME="SECTION00098300000000000000">
+Generated parameters</A>
+</H3>
+
+<P>
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="LEFT">Parameter</TD>
+<TD ALIGN="LEFT">Meaning</TD>
+</TR>
+<TR><TD ALIGN="LEFT">0</TD>
+<TD ALIGN="LEFT">pixel distance from start</TD>
+</TR>
+</TABLE>
+
+<P>
+
+<H4><A NAME="SECTION00098310000000000000">
+Pixel distance from start</A>
+</H4> is a distance from start coordinate. 
+The parameter is 0 for pixel at start and 1 for pixel at start+size.
+
+<P>
+
+<H3><A NAME="SECTION00098400000000000000">
+Leaf modificator</A>
+</H3>
+
+<P>
+<PRE>
+{
+  name = some_modificator_name
+  type = MODIFICATOR_LINE_LEAF
+
+  /*
+    [float, interval] leaf_start
+    [float, interval] leaf_stop
+  
+    [float, interval] leaf_width
+    [angle]           leaf_thread_angle
+  */
+}
+</PRE>
+<H3><A NAME="SECTION00098500000000000000">
+Leaf modificator properties</A>
+</H3>
+
+<UL>
+<LI><B>leaf_start</B>
+</LI>
+<LI><B>leaf_stop</B>
+</LI>
+<LI><B>leaf_width</B>
+</LI>
+<LI><B>leaf_thread_angle</B>
+</LI>
+</UL>
+
+<P>
+
+<H3><A NAME="SECTION00098600000000000000">
+Generated parameters</A>
+</H3>
+
+<P>
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="LEFT">Parameter</TD>
+<TD ALIGN="LEFT">Meaning</TD>
+</TR>
+<TR><TD ALIGN="LEFT">0</TD>
+<TD ALIGN="LEFT">pixel distance from leaf center</TD>
+</TR>
+<TR><TD ALIGN="LEFT">1</TD>
+<TD ALIGN="LEFT">pixel distance from start</TD>
+</TR>
+</TABLE>
+
+<P>
+
+<H3><A NAME="SECTION00098700000000000000">
+Crack modificator</A>
+</H3>
+
+<P>
+<PRE>
+{
+  name = some_modificator_name
+  type = MODIFICATOR_CRACK
+
+  /*
+    [enumerated type]   crack_type    
+      DEFAULT
+      CENTER
+      
+    [float]             direction_treshold
+    [float]             direction_angle_range
+    
+    [int]               crack_branches
+    [boolean]           crack_angle_random
+  */
+  crack_type = DEFAULT
+  
+  direction_angle_range = 0.1
+  direction_treshold = 0.1
+  
+  crack_branches = 1
+  crack_angle_random = FALSE
+}
+</PRE>
+<H3><A NAME="SECTION00098800000000000000">
+Crack modificator properties</A>
+</H3>
+
+<UL>
+<LI><B>crack_type</B>
+
+<UL>
+<LI><B>DEFAULT</B> - starts at coordinates start, crack direction is size
+</LI>
+<LI><B>CENTER</B> - starts at coordinates center (start+size/2), 
+crack direction is randomized
+</LI>
+</UL>
+</LI>
+<LI><B>direction_treshold</B> - probability that crack direction is changed.
+</LI>
+<LI><B>direction_angle_range</B> - defines maximal change (an angle)
+if crack direction is changed (because of <B>direction_treshold</B> condition).
+</LI>
+<LI><B>crack_branches</B> - crack branch num (for <B>crack_type = CENTER</B>).
+</LI>
+<LI><B>crack_angle_random</B> - randomize crack angles? (for <B>crack_type = CENTER</B>)
+</LI>
+</UL>
+
+<P>
+
+<H3><A NAME="SECTION00098900000000000000">
+Generated parameters</A>
+</H3>
+
+<P>
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="LEFT">Parameter</TD>
+<TD ALIGN="LEFT">Meaning</TD>
+</TR>
+<TR><TD ALIGN="LEFT">0</TD>
+<TD ALIGN="LEFT">pixel distance from start</TD>
+</TR>
+</TABLE>
+
+<P>
+
+<H3><A NAME="SECTION000981000000000000000">
+Brick modificator</A>
+</H3>
+
+<P>
+<PRE>
+{
+  name = some_modificator_name
+  type = MODIFICATOR_BRICK
+
+  /*
+    [int] brick_corners
+        
+    [int] brick_width
+    [int] brick_height
+        
+    [float] brick_width_scatter
+    [float] brick_height_scatter
+        
+    [int] brick_width_max
+    [int] brick_height_max
+        
+    [int] brick_width_zip
+    [int] brick_height_zip
+        
+    [float] brick_width_join_pobability
+    [float] brick_width_join_pobability_multiplier
+        
+    [float] brick_height_join_pobability
+    [float] brick_height_join_pobability_multiplier
+  */
+}
+</PRE>
+<H3><A NAME="SECTION000981100000000000000">
+Brick modificator properties</A>
+</H3>
+
+<UL>
+<LI><B>brick_corners</B>
+</LI>
+<LI><B>brick_width</B>
+</LI>
+<LI><B>brick_height</B>
+</LI>
+<LI><B>brick_width_scatter</B>
+</LI>
+<LI><B>brick_height_scatter</B>
+</LI>
+<LI><B>brick_width_max</B>
+</LI>
+<LI><B>brick_height_max</B>
+</LI>
+<LI><B>brick_width_zip</B>
+</LI>
+<LI><B>brick_height_zip</B>
+</LI>
+<LI><B>brick_width_join_pobability</B>
+</LI>
+<LI><B>brick_width_join_pobability_multiplier</B>
+</LI>
+<LI><B>brick_height_join_pobability</B>
+</LI>
+<LI><B>brick_height_join_pobability_multiplier</B>
+</LI>
+</UL>
+
+<P>
+
+<H3><A NAME="SECTION000981200000000000000">
+Generated parameters</A>
+</H3>
+
+<P>
+None.
+
+<P>
+
+<H2><A NAME="SECTION00099000000000000000">
+Bunch modificator</A>
+</H2>
+
+<P>
+<PRE>
+{
+  name = some_modificator_name
+  type = MODIFICATOR_BUNCH
+
+  /*
+    [float]           height
+    
+    [float]           height_correction_center
+    [float]           height_correction_left
+    [float]           height_correction_top      
+    
+    [float, interval] corner_curvature
+    
+    [int, interval]   points
+    [float, interval] lenght
+    
+    [float]           angle
+    [int]             border
+  */
+}
+</PRE>
+<H3><A NAME="SECTION00099100000000000000">
+Bunch modificator properties</A>
+</H3>
+
+<UL>
+<LI><B>brick_corners</B>
+</LI>
+<LI><B>height</B>
+</LI>
+<LI><B>height_correction_center</B>
+</LI>
+<LI><B>height_correction_left</B>
+</LI>
+<LI><B>height_correction_top</B>
+</LI>
+<LI><B>corner_curvature</B>
+</LI>
+<LI><B>points</B>
+</LI>
+<LI><B>lenght</B>
+</LI>
+<LI><B>angle</B>
+</LI>
+<LI><B>border</B>
+</LI>
+</UL>
+
+<P>
+
+<H3><A NAME="SECTION00099200000000000000">
+Generated parameters</A>
+</H3>
+
+<P>
+None.
+
+<P>
+
+<H2><A NAME="SECTION000910000000000000000">
+Mask modificator</A>
+</H2>
+
+<P>
+<PRE>
+{
+  name = some_modificator_name
+  type = MODIFICATOR_MASK
+
+  /*
+    [string]          bitmap
+    [enumerated type] mask_type
+  
+      MASK_BOOL
+      MASK_COLOR
+      MASK_HEIGHT
+  */
+}
+</PRE>
+<H3><A NAME="SECTION000910100000000000000">
+Mask modificator properties</A>
+</H3>
+
+<UL>
+<LI><B>bitmap</B>
+</LI>
+<LI><B>mask_type</B>
+
+<UL>
+<LI><B>MASK_BOOL</B>
+</LI>
+<LI><B>MASK_COLOR</B>
+</LI>
+<LI><B>MASK_HEIGHT</B>
+</LI>
+</UL>
+</LI>
+</UL>
+
+<P>
+
+<H3><A NAME="SECTION000910200000000000000">
+Generated parameters</A>
+</H3>
+
+<P>
+None.
+
+<P>
+
+<H2><A NAME="SECTION000911000000000000000">
+Light modificator</A>
+</H2>
+
+<P>
+Calculates light intensity for each pixel. Light values are written to target 
+unless a slave modifiator is defined. If there is a slave modifiator defined, the
+light modificator does not emit any pixels to target but passes light intensity as 
+a parameter to slave modificator.
+
+<P>
+<PRE>
+{
+  name = some_modificator_name
+  type = MODIFICATOR_LIGHT
+
+  /*      
+    [bool]    planar
+      
+    [vector]  light_position
+      
+    [float]   angle_min
+    [float]   angle_scale
+      
+    [float]   specular_shine
+      
+    [color]   color_ambient
+      
+    [bool]    color_diffuse_active
+    [color]   color_diffuse
+      
+    [bool]    color_specular_active
+    [color]   color_specular
+  */
+  planar = 1
+  light_position = (0,1,0)
+  
+  angle_min = 0
+  angle_scale = 1
+  
+  color_ambient = (0,0,0,0)
+  
+  color_diffuse_active = 1
+  color_diffuse = (1,1,1,1)
+  
+  color_specular_active = 0
+  color_specular = (1,1,1,1)
+  specular_shine = 1
+}
+</PRE>
+<H3><A NAME="SECTION000911100000000000000">
+Mask modificator properties</A>
+</H3>
+
+<UL>
+<LI><B>planar</B> - Is the light planar or spot?
+</LI>
+<LI><B>light_position</B> - It's defined relative to target surface. 
+<!-- MATH
+ \begin{math}
+<-1,y,-1>
+\end{math}
+ -->
+<IMG
+ WIDTH="100" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img19.png"
+ ALT="$&lt;-1,y,-1&gt;$"> means upper left corner of target surface and <!-- MATH
+ \begin{math}
+<1,y,1>
+\end{math}
+ -->
+<IMG
+ WIDTH="76" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img20.png"
+ ALT="$&lt;1,y,1&gt;$"> lower right
+corner of target surface. The y value defines light height and it's from <!-- MATH
+ \begin{math}
+<0,1>
+\end{math}
+ -->
+<IMG
+ WIDTH="60" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img4.png"
+ ALT="$&lt;0,1&gt;$"> range, 
+which is translated to <!-- MATH
+ \begin{math}
+<0,texture\_height>
+\end{math}
+ -->
+<IMG
+ WIDTH="155" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img21.png"
+ ALT="$&lt;0,texture\_height&gt;$">.
+</LI>
+<LI><B>angle_min, angle_scale</B> - An angle between surface normal vector and light vector
+is modidified as:
+<PRE>
+angle_final = angle_min + angle_calculated * angle_scale
+</PRE>
+</LI>
+<LI><B>specular_shine</B> - <!-- MATH
+ \begin{math}
+<0,1>
+\end{math}
+ -->
+<IMG
+ WIDTH="60" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img4.png"
+ ALT="$&lt;0,1&gt;$"> shine range.
+</LI>
+</UL>
+Standard components of phong illumination model:
+
+<UL>
+<LI><B>color_ambient</B>
+</LI>
+<LI><B>color_diffuse_active</B>
+</LI>
+<LI><B>color_diffuse</B>
+</LI>
+<LI><B>color_specular_active</B>
+</LI>
+<LI><B>color_specular</B>
+</LI>
+</UL>
+<H3><A NAME="SECTION000911200000000000000">
+Generated parameters</A>
+</H3>
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="LEFT">Parameter</TD>
+<TD ALIGN="LEFT">Meaning</TD>
+</TR>
+<TR><TD ALIGN="LEFT">0</TD>
+<TD ALIGN="LEFT">pixel light intensity</TD>
+</TR>
+</TABLE>
+
+<P>
+
+<H2><A NAME="SECTION000912000000000000000">
+TODO</A>
+</H2>
+MODIFICATOR_BITMAP
+MODIFICATOR_FILTER
+MODIFICATOR_GENERATOR_MESH
+
+<P>
+
+<H1><A NAME="SECTION000100000000000000000">
+About this document ...</A>
+</H1>
+ <P>
+This document was generated using the
+<A HREF="http://www.latex2html.org/"><STRONG>LaTeX</STRONG>2<tt>HTML</tt></A> translator Version 2008 (1.71)
+<P>
+Copyright &#169; 1993, 1994, 1995, 1996,
+<A HREF="http://cbl.leeds.ac.uk/nikos/personal.html">Nikos Drakos</A>, 
+Computer Based Learning Unit, University of Leeds.
+<BR>
+Copyright &#169; 1997, 1998, 1999,
+<A HREF="http://www.maths.mq.edu.au/~ross/">Ross Moore</A>, 
+Mathematics Department, Macquarie University, Sydney.
+<P>
+The command line arguments were: <BR>
+ <STRONG>latex2html</STRONG> <TT>-split +0 -no_footnode tage.tex</TT>
+<P>
+The translation was initiated by  on 2010-02-21<HR>
+<!--Navigation Panel-->
+<IMG WIDTH="81" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next_inactive"
+ SRC="file:/usr/share/latex2html/icons/nx_grp_g.png"> 
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="file:/usr/share/latex2html/icons/up_g.png"> 
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="file:/usr/share/latex2html/icons/prev_g.png">   
+<BR>
+<!--End of Navigation Panel-->
+<ADDRESS>
+
+2010-02-21
+</ADDRESS>
+</BODY>
+</HTML>

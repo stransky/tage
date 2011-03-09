@@ -1,0 +1,83 @@
+include material.dat
+
+// Test script
+{
+  name = test_mesh
+  type = MESH_PARAMS
+
+  diff_x = 3
+  diff_y = 6
+  diff_z = 6
+
+  bunch_slice_segments = 2
+  bunch_slice_falling = 0
+
+  bunch_slice_x_offset = 1.5
+
+  mesh_type = MESH_BUNCH
+}
+
+{
+  name = test_material
+  type = MATERIAL_PARAMS
+//  transparent = 1
+  double_side = 1
+}
+
+{
+  name = test_texture
+  type = TEXTURE_PARAMS
+
+  texture_alpha = 1
+  texture_size_x = 512
+  texture_size_y = 512
+
+//  heightmap_dist = 0.1
+  heightmap_dist = 0.05
+
+  background_color_r = 255
+  background_color_g = 255
+  background_color_b = 255
+  background_color_a = 0
+}
+
+{
+  name = line_grass
+  modificator_slave = grass_pixel_point
+  type = TEXTURE_MODIFICATOR_PATTERN_LINE
+  pixel_size = 1
+}
+
+{
+  name = line_leaf
+  type = TEXTURE_MODIFICATOR_PATTERN_LINE_LEAF
+  modificator_slave = line_grass
+  modificator_master = 1
+
+  coordinates_random = 1
+  coordinates_random_num = 5
+
+  {
+    type = TEXTURE_MODIFICATOR_COORDINATES
+
+    index = 0
+
+    start_x = 250
+    start_y = 0
+
+    size_r = 45
+    size_l = 100
+  }
+
+  {
+    type = TEXTURE_MODIFICATOR_COORDINATES
+
+    index = 1
+
+    start_x = 260
+    start_y = 0
+
+    size_r = 135
+    size_l = 300
+  }
+}

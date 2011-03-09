@@ -1,0 +1,39 @@
+// Target pixels dust pixel points
+{
+  name = grass_pixel_point
+  type = MODIFICATOR_POINT_SINGLE
+
+  {
+    type = MODIFICATOR_POINT_OPBOX
+
+    color_center = #3b5528
+
+    color_delta.r = 0
+    color_delta.g = rgb(100)
+    color_delta.b = 0
+        
+    pixel_color_final = color_center + color_delta*PARAM_RAND
+  }
+}
+
+{
+  name = test_rect
+  type = MODIFICATOR_RECT
+  modificator_slave = grass_pixel_point
+}
+
+// Mesh generator
+{
+  name = base_generator
+  type = GENERATOR_MESH
+
+  modificator = test_rect
+  modificator_target = TEXTURE
+}
+
+{
+  name = generator_launcher
+  type = GENERATOR_LAUNCHER
+
+  generator_mesh = base_generator
+}

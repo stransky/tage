@@ -1,0 +1,47 @@
+// generates one white pixel at random location
+// from (0,0) to (512,512)
+
+// Target pixels
+{
+  name = pixel_point
+  type = MODIFICATOR_POINT_SINGLE
+
+  {
+    type = MODIFICATOR_POINT_OPBOX
+    pixel_color_final = #ffffff
+  }
+
+  coordinates_random = 1
+  coordinates_random_num = 1
+
+  {
+    type = MODIFICATOR_COORDINATE
+    index = 0
+    start.x = 0
+    start.y = 0
+  }
+  
+  {
+    type = MODIFICATOR_COORDINATE
+    index = 1
+    start.x = 512
+    start.y = 512
+  }  
+}
+
+// A generator
+{
+  name = base_generator
+  type = GENERATOR_MESH
+
+  modificator = pixel_point
+  modificator_target = TEXTURE
+}
+
+// Whole generator launcher
+{
+  name = generator_launcher
+  type = GENERATOR_LAUNCHER
+
+  generator_mesh = base_generator
+}

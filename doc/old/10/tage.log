@@ -1,0 +1,171 @@
+This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=latex 2009.11.29)  7 FEB 2010 18:02
+entering extended mode
+ %&-line parsing enabled.
+**tage.tex
+(./tage.tex
+LaTeX2e <2005/12/01>
+Babel <v3.8h> and hyphenation patterns for english, usenglishmax, dumylang, noh
+yphenation, arabic, basque, bulgarian, coptic, welsh, czech, slovak, german, ng
+erman, danish, esperanto, spanish, catalan, galician, estonian, farsi, finnish,
+ french, greek, monogreek, ancientgreek, croatian, hungarian, interlingua, ibyc
+us, indonesian, icelandic, italian, latin, mongolian, dutch, norsk, polish, por
+tuguese, pinyin, romanian, russian, slovenian, uppersorbian, serbian, swedish, 
+turkish, ukenglish, ukrainian, loaded.
+(/usr/share/texmf/tex/latex/base/article.cls
+Document Class: article 2005/09/16 v1.4f Standard LaTeX document class
+(/usr/share/texmf/tex/latex/base/size10.clo
+File: size10.clo 2005/09/16 v1.4f Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+(/usr/share/texmf/tex/latex/ltxmisc/a4wide.sty
+Package: a4wide 1994/08/30
+
+(/usr/share/texmf/tex/latex/ntgclass/a4.sty
+Package: a4 2004/04/15 v1.2g A4 based page layout
+))
+(/usr/share/texmf/tex/latex/graphics/graphicx.sty
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texmf/tex/latex/graphics/keyval.sty
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+\KV@toks@=\toks14
+)
+(/usr/share/texmf/tex/latex/graphics/graphics.sty
+Package: graphics 2006/02/20 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texmf/tex/latex/graphics/trig.sty
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+(/usr/share/texmf/tex/latex/config/graphics.cfg
+File: graphics.cfg 2007/01/18 v1.5 graphics configuration of teTeX/TeXLive
+)
+Package graphics Info: Driver file: dvips.def on input line 90.
+
+(/usr/share/texmf/tex/latex/graphics/dvips.def
+File: dvips.def 1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
+))
+\Gin@req@height=\dimen103
+\Gin@req@width=\dimen104
+)
+
+LaTeX Warning: Unused global option(s):
+    [9pt].
+
+(./tage.aux)
+\openout1 = `tage.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+ [1
+
+]
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 127.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 127.
+ [2] [3] [4] [5]
+File: p08.eps Graphic file (type eps)
+ <p08.eps>
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 293.
+
+
+(/usr/share/texmf/tex/latex/base/omscmr.fd
+File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 293.
+ [6
+
+] [7] [8] [9] [10] [11]
+Overfull \hbox (16.12202pt too wide) in paragraph at lines 612--613
+[]\OT1/cmr/bx/n/10 probability[]fade \OT1/cmr/m/n/10 - pixel prob-a-bil-ity fad
+-ing, it's used by MOD-I-FI-CA-TOR[]POINT[]EXTENDED
+ []
+
+[12]
+File: p02.eps Graphic file (type eps)
+ <p02.eps>
+File: p06.eps Graphic file (type eps)
+ <p06.eps>
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[13] [14]
+File: p05.eps Graphic file (type eps)
+ <p05.eps>
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[15] [16] [17]
+Overfull \hbox (36.26952pt too wide) in paragraph at lines 886--888
+[]\OT1/cmr/bx/n/10 generator[]type \OT1/cmr/m/n/10 - it's a gen-er-a-tor type u
+sed for PARAM[]SCATTER and PARAM[]SCATTER[]HALF
+ []
+
+[18]
+File: p04.eps Graphic file (type eps)
+ <p04.eps>
+File: p07.eps Graphic file (type eps)
+ <p07.eps> [19]
+Overfull \hbox (77.12338pt too wide) in paragraph at lines 956--960
+\OT1/cmr/m/n/10 main com-po-nents - \OT1/cmr/bx/n/10 COLOR[]DELTA \OT1/cmr/m/n/
+10 which is di-rectly de-fined in the block and \OT1/cmr/bx/n/10 COLOR[]CENTER[
+]CURRENT
+ []
+
+
+Overfull \hbox (9.43396pt too wide) in paragraph at lines 961--965
+\OT1/cmr/m/n/10 fi-a-tor pa-ram-e-ter de-fined by \OT1/cmr/bx/n/10 color[]delta
+[]parameter\OT1/cmr/m/n/10 . A color op-er-a-tion de-fined by \OT1/cmr/bx/n/10 
+color[]operation
+ []
+
+File: p09.eps Graphic file (type eps)
+<p09.eps> [20]
+File: p10.eps Graphic file (type eps)
+ <p10.eps> [21] [22
+
+] [23] [24] [25]
+Overfull \hbox (49.00696pt too wide) in paragraph at lines 1254--1257
+ \OT1/cmr/bx/n/10 Rel-a-tive pixel height \OT1/cmr/m/n/10 means that pixel heig
+ht is clamped to $[]$
+ []
+
+
+Overfull \hbox (63.6595pt too wide) in paragraph at lines 1260--1260
+[]\OT1/cmtt/m/n/10 height_translated = (height_pixel - height_range_min) / (hei
+ght_range_max - height_range_min)[] 
+ []
+
+[26] [27] [28] [29] [30] [31] [32] [33] (./tage.aux) ) 
+Here is how much of TeX's memory you used:
+ 588 strings out of 256217
+ 7008 string characters out of 1917094
+ 57076 words of memory out of 1500000
+ 3914 multiletter control sequences out of 10000+200000
+ 5945 words of font info for 22 fonts, out of 1200000 for 2000
+ 645 hyphenation exceptions out of 8191
+ 25i,7n,19p,181b,289s stack positions out of 5000i,500n,6000p,200000b,15000s
+
+Output written on tage.dvi (33 pages, 60412 bytes).

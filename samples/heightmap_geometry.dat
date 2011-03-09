@@ -1,0 +1,138 @@
+// Target pixels dust pixel points
+{
+  name = dirt_pixel_point
+  type = MODIFICATOR_POINT_SINGLE
+
+  // Base dust background (from fractal generator)
+  {
+    type = MODIFICATOR_POINT_SINGLE_COLOR
+
+    color_center = b29681
+    color_center_scale = 2
+
+    color_delta_r = 50
+    color_delta_g = 50
+    color_delta_b = 50
+
+    color_delta_parameter = PARAM_PREV_0
+  }
+
+  // Added dust noise (from random generator)
+  {
+    type = MODIFICATOR_POINT_SINGLE_COLOR
+
+    color_center = b29681
+
+    color_delta_r = 50
+    color_delta_g = 50
+    color_delta_b = 50
+
+    final_operation = MODULATE
+  }
+}
+
+{
+  name = dirt_field
+  type = MODIFICATOR_FRACTAL
+  modificator_slave = dirt_pixel_point
+  fractal_hurst = 0.4
+}
+
+// Target pixels dist pixel points
+{
+  name = dirt_pixel_height
+  type = MODIFICATOR_POINT_SINGLE
+
+  // Added dust height (from fractal generator)
+  {
+    type = MODIFICATOR_POINT_SINGLE_HEIGHT
+
+    height_center = 0
+    height_delta = 1
+
+    height_operation = ADD
+    height_parameter = PARAM_PREV_0
+  }
+}
+
+
+{
+  name = dirt_field_height
+  type = MODIFICATOR_FRACTAL
+  modificator_slave = dirt_pixel_height
+  fractal_hurst = 0.4
+}
+
+{
+  name = dirt_field_height_repeated
+  type = MODIFICATOR_HEIGHT_MAP
+  modificator_slave = dirt_pixel_height
+  height_source = TARGET_TEXTURE
+  scale_target = 1
+}
+
+{
+  name = land_light
+  type = MODIFICATOR_LIGHT
+
+  light_position_x =-1
+  light_position_y = 1
+  light_position_z =-1
+}
+
+// Mesh generator
+{
+  name = forest_generator
+  type = GENERATOR_MESH
+
+  modificator = dirt_field
+  modificator_target = TEXTURE
+
+  modificator = dirt_field_height
+  modificator_target = TEXTURE
+
+  modificator = dirt_field_height_repeated
+  modificator_target = GEOMETRY
+
+  modificator = land_light
+  modificator_target = TEXTURE
+}
+
+// Test script
+{
+  name = test_mesh
+  type = MESH_PARAMS
+
+  size_x = 128
+//  size_y = 128
+  size_y = 64
+  size_z = 128
+
+  mesh_type = MESH_LAND
+}
+
+{
+  name = test_material
+  type = MATERIAL_PARAMS
+}
+
+{
+  name = test_texture
+  type = TEXTURE_PARAMS
+
+  texture_size_x = 512
+  texture_size_y = 512
+  texture_height = 128
+
+  background_color_r = 255
+  background_color_g = 255
+  background_color_b = 255
+  background_color_a = 0
+}
+
+{
+  name = generator_launcher
+  type = GENERATOR_LAUNCHER
+
+  generator_mesh = forest_generator
+}

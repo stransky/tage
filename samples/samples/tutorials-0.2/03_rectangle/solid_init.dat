@@ -1,0 +1,41 @@
+// generates a rectangle over whole texture with solid color
+
+// Target pixels
+{
+  name = pixel_point
+  type = MODIFICATOR_POINT_SINGLE
+
+  {
+    {
+      type = MODIFICATOR_POINT_OPBOX_INIT
+      basic_color = #ff
+    }
+
+    type = MODIFICATOR_POINT_OPBOX
+    pixel_color_final = basic_color
+  }
+}
+
+// Rectangle modificator
+{
+  name = rectangle
+  type = MODIFICATOR_RECT
+  modificator_slave = pixel_point
+}
+
+// A generator
+{
+  name = base_generator
+  type = GENERATOR_MESH
+
+  modificator = rectangle
+  modificator_target = TEXTURE
+}
+
+// Whole generator launcher
+{
+  name = generator_launcher
+  type = GENERATOR_LAUNCHER
+
+  generator_mesh = base_generator
+}

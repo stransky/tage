@@ -1,0 +1,57 @@
+// Target pixels dust pixel points
+{
+  name = dirt_pixel_point
+  type = MODIFICATOR_POINT_SINGLE
+
+  // Base background
+  {
+    type = MODIFICATOR_POINT_OPBOX
+
+    color_min = #000000
+    color_max = #ffffff
+
+    pixel_color_final_1 = color_min + (color_max-color_min)*PARAM_PREV_0
+  }
+
+  // Base height
+  {
+    type = MODIFICATOR_POINT_OPBOX
+    pixel_height_final_2 = 0.4*PARAM_PREV_0
+  }
+}
+
+{
+  name = dirt_field_height
+  type = MODIFICATOR_FRACTAL
+  modificator_slave = dirt_pixel_point
+  fractal_hurst = 0.6
+}
+
+// Mesh generator
+{
+  name = test_generator
+  type = GENERATOR_MESH
+
+  modificator = dirt_field_height
+  modificator_target = TEXTURE
+  modificator_target = GEOMETRY
+}
+
+// Test script
+{
+  name = test_mesh
+  type = MESH_PARAMS
+
+  size.x = 128
+  size.y = 128
+  size.z = 128
+
+  mesh_type = MESH_LAND
+}
+
+{
+  name = generator_launcher
+  type = GENERATOR_LAUNCHER
+
+  generator_mesh = test_generator
+}

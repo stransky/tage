@@ -1,0 +1,95 @@
+// Target pixels dist pixel points
+{
+  name = dirt_pixel_height
+  type = MODIFICATOR_POINT_SINGLE
+
+  // Added dust height (from fractal generator)
+  {
+    type = MODIFICATOR_POINT_OPBOX
+    pixel_height_final = PARAM_PREV_0
+  }
+}
+
+{
+  name = dirt_field_height
+  type = MODIFICATOR_FRACTAL
+  modificator_slave = dirt_pixel_height
+  fractal_hurst = 0.4
+}
+
+{
+  name = dirt_field_height_repeated
+  type = MODIFICATOR_HEIGHT_MAP
+  modificator_slave = dirt_pixel_height
+
+  // Load heightmap from texture target
+  height_source = TARGET_TEXTURE
+
+  // Scale output to target resolution
+  scale_target = 1
+}
+
+{
+  name = land_light
+  type = MODIFICATOR_LIGHT
+
+  light_position.x =-1
+  light_position.y = 1
+  light_position.z =-1
+}
+
+// Mesh generator
+{
+  name = forest_generator
+  type = GENERATOR_MESH
+
+  // Generate height field to texture
+  modificator = dirt_field_height
+  modificator_target = TEXTURE
+
+  // Apply light - it's generated as color
+  modificator = land_light
+  modificator_target = TEXTURE
+
+  // Copy height from texture to geometry target
+  modificator = dirt_field_height_repeated
+  modificator_target = GEOMETRY
+}
+
+// Test script
+{
+  name = test_mesh
+  type = MESH_PARAMS
+
+  size.x = 128
+  size.y = 64
+  size.z = 128
+
+  mesh_type = MESH_LAND
+}
+
+{
+  name = test_material
+  type = MATERIAL_PARAMS
+}
+
+{
+  name = test_texture
+  type = TEXTURE_PARAMS
+
+  texture_size.x = 512
+  texture_size.y = 512
+  texture_height = 128
+
+  background_color.r = 255
+  background_color.g = 255
+  background_color.b = 255
+  background_color.a = 0
+}
+
+{
+  name = generator_launcher
+  type = GENERATOR_LAUNCHER
+
+  generator_mesh = forest_generator
+}

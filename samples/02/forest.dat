@@ -1,0 +1,208 @@
+// Target pixels for grass
+{
+  name = land_pixel_point
+  type = MODIFICATOR_POINT_SINGLE
+
+  {
+    type = MODIFICATOR_POINT_SINGLE_COLOR
+
+    color_center_r = 33
+    color_center_g = 25
+    color_center_b = 7
+
+    color_delta_r = 33
+    color_delta_g = 25
+    color_delta_b = 7
+  }
+
+  {
+    type = MODIFICATOR_POINT_SINGLE_COLOR
+
+    color_center_r = 33
+    color_center_g = 25
+    color_center_b = 7
+
+    color_delta_r = 33
+    color_delta_g = 25
+    color_delta_b = 7
+
+    color_operation = ADD
+    color_parameter = PARAM_PREV_0
+
+    final_operation = ADD
+  }
+
+/*
+  {
+    type = MODIFICATOR_POINT_SINGLE_COLOR
+
+    color_center_r = 70
+    color_center_g = 60
+    color_center_b = 0
+
+    color_delta_r = 70
+    color_delta_g = 60
+    color_delta_b = 0
+
+    final_operation = ADD
+
+    color_operation = ADD
+    color_parameter = PARAM_PREV_1
+  }
+*/
+}
+
+// Target pixels for earth
+{
+  name = dust_pixel_point
+  type = MODIFICATOR_POINT_SINGLE
+
+  {
+    type = MODIFICATOR_POINT_SINGLE_COLOR
+
+    color_center_r = 95
+    color_center_g = 52
+    color_center_b = 0
+
+    color_delta_r = 95
+    color_delta_g = 52
+    color_delta_b = 0
+
+    final_operation = SET
+
+    color_operation = COLOR_ADD
+    color_parameter = PARAM_PREV_0
+  }
+}
+
+
+// Target pixels for grass
+{
+  name = grass_pixel_point
+  type = MODIFICATOR_POINT_SINGLE
+
+  {
+    type = MODIFICATOR_POINT_SINGLE_COLOR
+
+    color_center_r = 20
+    color_center_g = 80
+    color_center_b = 9
+
+    color_delta_r = 20
+    color_delta_g = 80
+    color_delta_b = 9
+
+    final_operation = ADD
+
+    final_blend = 1
+    final_blend_parameter = PARAM_PREV_0
+  }
+}
+
+{
+  name = land_background
+  type = MODIFICATOR_FRACTAL
+
+  modificator_slave = land_pixel_point
+
+  fractal_hurst = 0.2
+}
+
+{
+  name = dust_fields
+  type = MODIFICATOR_FRACTAL
+
+//  modificator_slave = rock_pixel_point
+  //modificator_slave = dust_pixel_point
+  modificator_slave = grass_pixel_point
+
+  height_range_min = 0.4
+//  height_range_max = 1.0
+
+  fractal_hurst = 0.3
+}
+
+// Target pixels for rocks
+{
+  name = rock_pixel_point
+  type = MODIFICATOR_POINT_SINGLE
+
+  {
+    type = MODIFICATOR_POINT_SINGLE_COLOR
+
+    color_center_r = 57
+    color_center_g = 62
+    color_center_b = 55
+
+    color_delta_r = 57
+    color_delta_g = 62
+    color_delta_b = 55
+
+    final_blend = 0
+    final_operation = ADD
+    final_blend_parameter = PARAM_PREV_0
+  }
+}
+
+{
+  name = rock_fields
+  type = MODIFICATOR_FRACTAL
+
+  modificator_slave = rock_pixel_point
+
+  height_range_min = 0.7
+//  height_range_max = 1.0
+
+  fractal_hurst = 0.4
+}
+
+// Mesh generator
+{
+  name = forest_generator
+  type = GENERATOR_MESH
+
+  modificator = land_background
+  modificator_target = TEXTURE
+  modificator = dust_fields
+  modificator_target = TEXTURE
+//  modificator = rock_fields
+//  modificator_target = TEXTURE
+}
+
+// Test script
+{
+  name = test_mesh
+  type = MESH_PARAMS
+
+  size_x = 20
+  size_z = 20
+
+  mesh_type = MESH_LAND
+}
+
+{
+  name = test_material
+  type = MATERIAL_PARAMS
+}
+
+{
+  name = test_texture
+  type = TEXTURE_PARAMS
+
+  texture_size_x = 1024
+  texture_size_y = 1024
+
+  heightmap_dist = 0.05
+
+  background_color_r = 255
+  background_color_g = 255
+  background_color_b = 255
+  background_color_a = 0
+}
+
+{
+  name = generator_launcher
+  type = GENERATOR_LAUNCHER
+
+  generator_mesh = forest_generator
+}

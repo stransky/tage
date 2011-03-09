@@ -1,0 +1,128 @@
+/*
+  Basic material types (grass, sand, rocks, snow...)
+*/
+
+// Target pixels for grass
+{
+  name = grass_pixel_point
+  type = MODIFICATOR_POINT_SINGLE
+  pixel_size = 1
+
+  {
+    type = MODIFICATOR_POINT_SINGLE_COLOR
+
+    color_center_r = 20
+    color_center_g = 100
+    color_center_b = 5
+
+    color_delta_r = 20
+    color_delta_g = 100
+    color_delta_b = 5
+
+    final_operation = SET
+  }
+
+  {
+    type = MODIFICATOR_POINT_SINGLE_COLOR
+
+    color_center_r = 20
+    color_center_g = 100
+    color_center_b = 5
+
+    color_delta_r = 20
+    color_delta_g = 100
+    color_delta_b = 5
+
+    final_operation = SUB
+
+    color_operation = COLOR_ADD
+    color_parameter = PARAM_PREV_1
+  }
+
+  {
+    type = MODIFICATOR_POINT_SINGLE_COLOR
+
+    color_center_r = 70
+    color_center_g = 60
+    color_center_b = 0
+
+    color_delta_r = 70
+    color_delta_g = 60
+    color_delta_b = 0
+
+    final_operation = ADD
+
+    color_operation = COLOR_ADD
+    color_parameter = PARAM_PREV_1
+  }
+
+
+  color_borders = 1
+
+  color_border_min_r = 10
+  color_border_min_g = 10
+  color_border_min_b = 5
+}
+
+// Target pixels for earth
+{
+  name = dust_pixel_point
+  type = MODIFICATOR_POINT_SINGLE
+
+  {
+    type = MODIFICATOR_POINT_SINGLE_COLOR
+
+    color_center_r = 95
+    color_center_g = 52
+    color_center_b = 0
+
+    color_delta_r = 95
+    color_delta_g = 52
+    color_delta_b = 0
+
+    color_operation = COLOR_ADD
+    color_parameter = PARAM_PREV_0
+  }
+}
+
+// Target pixels for rocks
+{
+  name = rock_pixel_point
+  type = MODIFICATOR_POINT_SINGLE
+
+  {
+    type = MODIFICATOR_POINT_SINGLE_COLOR
+
+    color_center_r = 57
+    color_center_g = 62
+    color_center_b = 55
+
+    color_delta_r = 59
+    color_delta_g = 49
+    color_delta_b = 38
+  }
+
+  pixel_size = 1
+}
+
+// Target pixels for test
+{
+  name = test_pixel_point
+  type = MODIFICATOR_POINT_SINGLE
+
+  {
+    type = MODIFICATOR_POINT_SINGLE_COLOR
+
+    color_center_r = 100
+    color_center_g = 100
+    color_center_b = 100
+
+    color_delta_r = 0
+    color_delta_g = 0
+    color_delta_b = 0
+
+    color_operation = COLOR_SUB
+    color_parameter = PARAM_PREV_0
+  }
+}
+

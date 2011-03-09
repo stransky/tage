@@ -1,0 +1,39 @@
+// Target pixels for cracks
+{
+  name = land_pixel_point
+  type = MODIFICATOR_POINT_SINGLE
+
+  {
+    type = MODIFICATOR_POINT_OPBOX
+    pixel_color_final = #ffffff
+  }
+}
+
+{
+  name = test_crack
+  type = MODIFICATOR_CRACK
+
+  // can be CENTER or DEFAULT
+  crack_type = CENTER
+
+  // used when crack_type is CENTER
+  crack_branches = 3
+
+  modificator_slave = land_pixel_point
+}
+
+// Mesh generator
+{
+  name = test_generator
+  type = GENERATOR_MESH
+
+  modificator = test_crack
+  modificator_target = TEXTURE
+}
+
+{
+  name = generator_launcher
+  type = GENERATOR_LAUNCHER
+
+  generator_mesh = test_generator
+}

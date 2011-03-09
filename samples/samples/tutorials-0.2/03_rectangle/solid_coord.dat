@@ -1,0 +1,46 @@
+// generates a rectangle with solid color from (20,20) to (60,60)
+
+// Target pixels
+{
+  name = pixel_point
+  type = MODIFICATOR_POINT_SINGLE
+
+  {
+    type = MODIFICATOR_POINT_OPBOX
+    pixel_color_final = #a0
+  }
+}
+
+// Rectangle modificator
+{
+  name = rectangle
+  type = MODIFICATOR_RECT
+  modificator_slave = pixel_point
+  
+  {
+    type = MODIFICATOR_COORDINATE
+      
+    start.x = 20
+    start.y = 20
+
+    size.x = 40
+    size.y = 40
+  }  
+}
+
+// A generator
+{
+  name = base_generator
+  type = GENERATOR_MESH
+
+  modificator = rectangle
+  modificator_target = TEXTURE
+}
+
+// Whole generator launcher
+{
+  name = generator_launcher
+  type = GENERATOR_LAUNCHER
+
+  generator_mesh = base_generator
+}

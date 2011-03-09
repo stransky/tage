@@ -1,0 +1,50 @@
+// Target pixels for grass
+{
+  name = grass_pixel_point
+  type = MODIFICATOR_POINT_SINGLE
+
+  {
+    type = MODIFICATOR_POINT_OPBOX
+
+    color_center.r = rgb(20)
+    color_center.g = rgb(100)
+    color_center.b = rgb(5)
+
+    color_delta.r = rgb(20)
+    color_delta.g = rgb(100)
+    color_delta.b = rgb(5)
+
+    delta = (abs(pixel_coordinate.y-32)/32)
+    pixel_color_final = color_center + color_delta*delta
+  }
+}
+
+{
+  name = rect
+  type = MODIFICATOR_RECT
+  modificator_slave = grass_pixel_point
+}
+
+{
+  name = test_generator
+  type = GENERATOR_MESH
+  
+  modificator = rect
+  modificator_target = TEXTURE 
+}
+
+{
+  name = test_texture
+  type = TEXTURE_PARAMS
+
+  texture_size.x = 64
+  texture_size.y = 64
+}
+
+{
+  name = generator_launcher
+  type = GENERATOR_LAUNCHER
+
+  generator_mesh = test_generator
+}
+

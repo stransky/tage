@@ -1,0 +1,144 @@
+// Target pixels for grass
+{
+  name = grass_pixel_point
+  type = MODIFICATOR_POINT_SINGLE
+
+  pixel_size = 1
+
+  {
+    type = MODIFICATOR_POINT_OPBOX
+
+    color_center.r = rgb(20)
+    color_center.g = rgb(100)
+    color_center.b = rgb(5)
+
+    color_delta.r = rgb(20)
+    color_delta.g = rgb(100)
+    color_delta.b = rgb(5)
+
+    pixel_color_final = color_center + color_delta*PARAM_PREV_0
+//    pixel_color_final = color_center + color_delta*PARAM_RAND
+  }
+}
+
+{
+  name = line_grass
+  type = MODIFICATOR_LINE
+//  line_size = 1
+  modificator_slave = grass_pixel_point
+}
+
+{
+  name = line_leaf
+  type = MODIFICATOR_LINE_LEAF 
+//  modificator_slave = grass_pixel_point
+  modificator_slave = line_grass
+
+  leaf_fill = 0
+
+  leaf_width_start = 1
+  leaf_width_end = 2
+  
+  leaf_start = 0.3
+  leaf_stop = 0.8
+
+  leaf_thread_angle = 45
+
+  {
+    type = MODIFICATOR_COORDINATE
+
+    start.x = 100
+    start.y = 100
+
+    size.x = 200
+    size.y = 0
+  }
+  
+/*
+  coordinates_random = 1
+  coordinates_random_num = 5
+
+  {
+    type = MODIFICATOR_COORDINATE
+
+    index = 0
+
+    start.x = 250
+    start.y = 0
+
+    size.r = 45
+    size.l = 100
+  }
+
+  {
+    type = MODIFICATOR_COORDINATE
+
+    index = 1
+
+    start.x = 260
+    start.y = 0
+
+    size.r = 135
+    size.l = 300
+  }
+*/  
+}
+
+{
+  name = test_generator
+  type = GENERATOR_MESH
+  
+  modificator = line_leaf
+  modificator_target = TEXTURE 
+}
+/*
+// Test script
+{
+  name = test_mesh
+  type = MESH_PARAMS
+
+  mesh_type = MESH_BUNCH
+
+  diff.x = 3
+  diff.y = 3
+  diff.z = 3
+
+  bunch_slice_segments = 3
+  bunch_slice_falling = 0
+  bunch_segment_falling = 10
+  
+  bunch_slice_width_end = 0
+  bunch_slice_height_end = 1
+
+  bunch_slice_z_offset = -1
+}
+
+{
+  name = test_material
+  type = MATERIAL_PARAMS
+//  transparent = 1
+  double_side = 1
+}
+
+{
+  name = test_texture
+  type = TEXTURE_PARAMS
+
+  texture_alpha = 1
+  texture_size.x = 512
+  texture_size.y = 512
+
+  background_color.r = 255
+  background_color.g = 255
+  background_color.b = 255
+  background_color.a = 0
+}
+*/
+
+{
+  name = generator_launcher
+  type = GENERATOR_LAUNCHER
+
+  generator_mesh = test_generator
+}
+

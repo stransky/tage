@@ -1,0 +1,127 @@
+// Target pixels dust pixel points
+{
+  name = dirt_pixel_point
+  type = MODIFICATOR_POINT_SINGLE
+
+  // Base dust background (from fractal generator)
+  {
+    type = MODIFICATOR_POINT_OPBOX
+
+    color_center = #b29681
+
+    color_delta.r = rgb(50)
+    color_delta.g = rgb(50)
+    color_delta.b = rgb(50)
+
+    pixel_color_final = color_center*0.4 + color_delta*PARAM_PREV_0
+  }
+  // Added dust noise (from random generator)
+  {
+    type = MODIFICATOR_POINT_OPBOX
+
+    color_center = #b29681
+
+    color_delta.r = rgb(50)
+    color_delta.g = rgb(50)
+    color_delta.b = rgb(50)
+
+    pixel_color_final = pixel_color_final * (color_center + color_delta*PARAM_RAND)
+  }
+}
+
+{
+  name = dirt_field
+  type = MODIFICATOR_FRACTAL
+  modificator_slave = dirt_pixel_point
+  fractal_hurst = 0.1
+}
+
+// Target pixels dist pixel points
+{
+  name = dirt_pixel_height
+  type = MODIFICATOR_POINT_SINGLE
+
+  // Added dust height (from fractal generator)
+  {
+    type = MODIFICATOR_POINT_OPBOX
+
+    height_delta = 0.1
+    pixel_height_final = height_delta*PARAM_PREV_0
+  }
+}
+
+{
+  name = dirt_field_height
+  type = MODIFICATOR_FRACTAL
+  modificator_slave = dirt_pixel_height
+  fractal_hurst = 0.3
+}
+
+{
+  name = land_light
+  type = MODIFICATOR_LIGHT
+
+  light_position.x =-1
+  light_position.y = 1
+  light_position.z =-1
+}
+
+{
+  name = rock_field_point
+  type = MODIFICATOR_POINT_SINGLE
+
+  {
+    type = MODIFICATOR_POINT_OPBOX
+
+    color_center.r = rgb(100)
+    color_center.g = rgb(100)
+    color_center.b = rgb(100)
+
+    color_delta.r = rgb(70)
+    color_delta.g = rgb(70)
+    color_delta.b = rgb(70)
+	
+    //color_final = color_center*0.3 + color_delta*PARAM_PREV_1
+    color_final = color_center*0.3 + color_delta*PARAM_PREV_1
+
+	// Blend it
+    pixel_color_final = pixel_color_final*(1-PARAM_PREV_0) + color_final*(PARAM_PREV_0)
+
+    height_delta = 0.01
+    pixel_height_final = pixel_height_final + (height_delta*PARAM_PREV_0)*(PARAM_PREV_1)
+  }
+}
+
+{
+  name = rock_field
+  type = MODIFICATOR_FRACTAL
+  modificator_slave = rock_field_point
+  fractal_hurst = 0.1
+  intensity_range_min = 0.4
+}
+
+// Mesh generator
+{
+  name = forest_generator
+  type = GENERATOR_MESH
+
+  modificator = dirt_field
+  modificator_target = TEXTURE
+
+  modificator = dirt_field_height
+  modificator_target = TEXTURE
+  modificator_target = GEOMETRY
+
+  modificator = rock_field
+  modificator_target = TEXTURE
+
+  modificator = land_light
+  modificator_target = TEXTURE
+}
+
+{
+  name = generator_launcher
+  type = GENERATOR_LAUNCHER
+
+  generator_mesh = forest_generator
+}

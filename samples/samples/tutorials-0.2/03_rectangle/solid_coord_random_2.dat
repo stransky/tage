@@ -1,0 +1,68 @@
+// generates 50 rectangles with solid color at random positions (from 20,20 to 200,200)
+// with fixed size 40x40 pixels, with randomized blue color
+
+// Target pixels
+{
+  name = pixel_point
+  type = MODIFICATOR_POINT_SINGLE
+
+  {
+    type = MODIFICATOR_POINT_OPBOX
+    pixel_color_final = basic_color
+    {
+       type = MODIFICATOR_POINT_OPBOX_INIT
+       basic_color = #ff * PARAM_RAND
+    }    
+  }
+}
+
+// Rectangle modificator
+{
+  name = rectangle
+  type = MODIFICATOR_RECT
+  modificator_slave = pixel_point
+
+  coordinates_random = 1
+  coordinates_random_num = 50
+  
+  {
+    type = MODIFICATOR_COORDINATE
+    
+    index = 0
+      
+    start.x = 20
+    start.y = 20
+
+    size.x = 40
+    size.y = 40
+  }  
+
+  {
+    type = MODIFICATOR_COORDINATE
+    
+    index = 1
+      
+    start.x = 200
+    start.y = 200
+
+    size.x = 40
+    size.y = 40
+  }    
+}
+
+// A generator
+{
+  name = base_generator
+  type = GENERATOR_MESH
+
+  modificator = rectangle
+  modificator_target = TEXTURE
+}
+
+// Whole generator launcher
+{
+  name = generator_launcher
+  type = GENERATOR_LAUNCHER
+
+  generator_mesh = base_generator
+}

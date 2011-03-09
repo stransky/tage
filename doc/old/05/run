@@ -1,0 +1,5 @@
+#!/bin/sh
+
+FILE=tage
+
+latex $FILE.tex; dvipdf $FILE.dvi $FILE.pdf; evince $FILE.pdf

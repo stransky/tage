@@ -1,0 +1,38 @@
+// generates a rectangle over whole texture with a randomize color
+
+// Target pixels
+{
+  name = pixel_point
+  type = MODIFICATOR_POINT_SINGLE
+
+  {
+    type = MODIFICATOR_POINT_OPBOX
+
+    color_delta = #505050
+    pixel_color_final = color_delta*PARAM_RAND
+  }
+}
+
+// Rectangle modificator
+{
+  name = test_rect
+  type = MODIFICATOR_RECT
+  modificator_slave = pixel_point
+}
+
+// A generator
+{
+  name = base_generator
+  type = GENERATOR_MESH
+
+  modificator = test_rect
+  modificator_target = TEXTURE
+}
+
+// Whole generator launcher
+{
+  name = generator_launcher
+  type = GENERATOR_LAUNCHER
+
+  generator_mesh = base_generator
+}

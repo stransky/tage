@@ -1,0 +1,221 @@
+/*
+  Test land is composed from:
+
+  1) basic dirt (fractal + cracks + light)
+  2) bulbs (random bunches in the basic dirt as height)
+  2) rocks (random rocks)
+  3) grass fields (from lines)
+*/
+
+// Target pixels dust pixel points
+{
+  name = dirt_pixel_point
+  type = MODIFICATOR_POINT_SINGLE
+
+  // Base dust background (from fractal generator)
+  {
+    type = MODIFICATOR_POINT_SINGLE_COLOR
+
+   color_min = 000000 
+   //color_max = e4c301 
+   color_max = b6b800 
+
+   color_delta_parameter = PARAM_PREV_0
+  }
+/*
+  // Added dust noise (from random generator)
+  {
+    type = MODIFICATOR_POINT_SINGLE_COLOR
+
+    color_center = ffb622
+    color_center_scale = 0.7
+
+    color_delta_r = 100
+    color_delta_g = 100
+    color_delta_b = 100
+
+    final_operation = MODULATE
+  }
+*/
+}
+
+{
+  name = dirt_field
+  type = MODIFICATOR_FRACTAL
+  modificator_slave = dirt_pixel_point
+  fractal_hurst = 0.4
+}
+
+// Target pixels dist pixel points
+{
+  name = dirt_pixel_height
+  type = MODIFICATOR_POINT_SINGLE
+
+  // Added dust height (from fractal generator)
+  {
+    type = MODIFICATOR_POINT_SINGLE_HEIGHT
+
+    height_center = 0
+    height_delta = 1
+
+    height_operation = ADD
+    height_parameter = PARAM_PREV_0
+  }
+}
+
+{
+  name = dirt_field_height
+  type = MODIFICATOR_FRACTAL
+//  modificator_slave = dirt_pixel_height
+  modificator_slave = dirt_pixel_point
+  fractal_hurst = 0.0
+  interpolation = MID_POINT
+}
+
+{
+  name = land_light
+  type = MODIFICATOR_LIGHT
+
+  light_position_x = 0
+  light_position_y = 1
+  light_position_z = 0
+
+  modificator_slave = dirt_pixel_point
+}
+
+// Target pixels - grass pixels
+{
+  name = grass_pixel_point
+  type = MODIFICATOR_POINT_SINGLE
+
+  // Base grass background (from fractal generator)
+  {
+   type = MODIFICATOR_POINT_SINGLE_COLOR
+
+   color_max = 06bb00
+   color_min = 000000 
+   color_delta_parameter = PARAM_PREV_0
+/*
+   final_blend = 1
+   final_blend_parameter = PARAM_PREV_1
+   final_operation = ADD
+*/
+  }
+}
+
+// Target pixels - grass pixels
+{
+  name = grass_line
+  type = MODIFICATOR_LINE
+  modificator_slave = grass_pixel_point
+
+  coordinates_random = 1 
+  coordinates_random_num = 1 
+  coordinates_operation = ADD 
+  
+  { 
+    type = MODIFICATOR_COORDINATE 
+ 
+    index = 0 
+ 
+    start_x = 0 
+    start_y = 0 
+ 
+    size_x = 40 
+    size_y = 40 
+  }
+
+  {
+    type = MODIFICATOR_COORDINATE
+    
+    index = 1
+
+    start_x = 40
+    start_y = 40
+
+    size_x = -40
+    size_y = -40
+  }
+}
+
+{
+  name = grass_fractal
+  type = MODIFICATOR_FRACTAL
+  modificator_slave = grass_line
+  fractal_hurst = 0.2
+  interpolation = MID_POINT
+  pixel_step = 2
+}
+
+{
+  name = grass_mask
+  type = MODIFICATOR_MASK
+  bitmap = /home/komat/Projekty/age_lib/heightmap.png
+  mask_type = MASK_HEIGHT
+}
+
+{
+  name = geometry_height_geometry
+  type = MODIFICATOR_HEIGHT_MAP
+  height_bitmap = /home/komat/Projekty/age_lib/heightmap.png
+  modificator_slave = dirt_pixel_height
+  scale_target = 1
+}
+
+// Mesh generator
+{
+  name = forest_generator
+  type = GENERATOR_MESH
+
+  modificator = dirt_field_height
+  modificator_target = TEXTURE
+
+  modificator = grass_fractal
+  modificator_target = TEXTURE
+
+  mask = grass_mask
+  mask_overlapping = 1
+  mask_height_max = 4
+  mask_height_min = 0
+
+  modificator = geometry_height_geometry
+  modificator_target = GEOMETRY
+}
+
+// Test script
+{
+  name = test_mesh
+  type = MESH_PARAMS
+
+  size_x = 256
+  size_y = 64
+  size_z = 256
+
+  mesh_type = MESH_LAND
+}
+
+{
+  name = test_material
+  type = MATERIAL_PARAMS
+}
+
+{
+  name = test_texture
+  type = TEXTURE_PARAMS
+
+  texture_size_x = 512
+  texture_size_y = 512
+  texture_height = 128
+
+  background_color_r = 255
+  background_color_g = 255
+  background_color_b = 255
+  background_color_a = 0
+}
+
+{
+  name = generator_launcher
+  type = GENERATOR_LAUNCHER
+
+  generator_mesh = forest_generator
+}

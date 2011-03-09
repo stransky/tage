@@ -1,0 +1,33 @@
+// Target pixels for grass
+{
+  name = land_pixel_point
+  type = MODIFICATOR_POINT_SINGLE
+
+  {
+    type = MODIFICATOR_POINT_OPBOX
+    pixel_color_final = #ffffff
+  }
+}
+
+{
+  name = land_background
+  type = MODIFICATOR_LINE
+
+  modificator_slave = land_pixel_point
+}
+
+// Mesh generator
+{
+  name = forest_generator
+  type = GENERATOR_MESH
+
+  modificator = land_background
+  modificator_target = TEXTURE
+}
+
+{
+  name = generator_launcher
+  type = GENERATOR_LAUNCHER
+
+  generator_mesh = forest_generator
+}

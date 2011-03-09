@@ -1,0 +1,186 @@
+// Target pixels for grass
+{
+  name = land_pixel_point
+  type = MODIFICATOR_POINT_SINGLE
+/*
+  {
+    type = MODIFICATOR_POINT_SINGLE_COLOR
+
+    color_center_r = 100
+    color_center_g = 100
+    color_center_b = 100
+  }
+*/
+
+  {
+    type = MODIFICATOR_POINT_SINGLE_COLOR
+
+    color_center_r = 100
+    color_center_g = 100
+    color_center_b = 100
+    color_center_scale = 1
+
+    color_delta_r = 100
+    color_delta_g = 100
+    color_delta_b = 100
+    color_delta_scale = 1
+  }
+
+/*
+  {
+    type = MODIFICATOR_POINT_SINGLE_HEIGHT
+
+    height_center = 0
+    height_delta = 0.02
+  }
+*/
+/*
+  {
+    type = MODIFICATOR_POINT_SINGLE_COLOR
+
+    color_center_r = 0
+    color_center_g = 0
+    color_center_b = 0
+
+    color_delta_r = 255
+    color_delta_g = 255
+    color_delta_b = 255
+
+    color_operation = ADD
+    color_delta_parameter = PARAM_PREV_0
+
+    final_operation = MODULATE
+  }
+*/
+
+  {
+    type = MODIFICATOR_POINT_SINGLE_HEIGHT
+
+    height_center = 0
+    height_delta = 1
+
+    height_operation = ADD
+    height_parameter = PARAM_PREV_0
+
+//    final_operation = ADD
+  }
+}
+
+// Filter mask
+{
+  name = land_pixel_point_mask
+  type = MODIFICATOR_MASK
+  mask_type = BOOL
+}
+
+{
+  name = land_pixel_point_filter
+  type = MODIFICATOR_FILTER
+  mask = land_pixel_point_mask
+  filter_strenght = 10
+}
+
+{
+  name = land_pixel_point_ext
+  type = MODIFICATOR_BUNCH
+
+  modificator_slave = land_pixel_point
+  modificator_slave = land_pixel_point_mask
+  modificator_post = land_pixel_point_filter
+
+/*
+  coordinates_random = 1
+  coordinates_random_num = 100
+
+  {
+    type = MODIFICATOR_COORDINATE
+
+    index = 0
+
+    start_x = 0
+    start_y = 0
+
+    size_x = 20
+    size_y = 20
+  }
+
+  {
+    type = MODIFICATOR_COORDINATE
+
+    index = 1
+
+    start_x = 400
+    start_y = 400
+
+    size_x = 40
+    size_y = 40
+  }
+*/
+}
+
+{
+  name = land_light
+  type = MODIFICATOR_LIGHT
+//  height_range = 128
+//  height_range = 512
+
+  light_position_x = -1
+  light_position_y =  1
+  light_position_z = -1
+
+//  angle_min = -1
+//  angle_scale = 2
+
+//  color_specular_active = 1
+//  specular_shine = 0.2
+}
+
+// Mesh generator
+{
+  name = forest_generator
+  type = GENERATOR_MESH
+
+  modificator = land_pixel_point_ext
+  modificator_target = TEXTURE
+
+  modificator = land_light
+  modificator_target = TEXTURE
+}
+
+// Test script
+{
+  name = test_mesh
+  type = MESH_PARAMS
+
+  size_x = 20
+  size_z = 20
+
+  mesh_type = MESH_LAND
+}
+
+{
+  name = test_material
+  type = MATERIAL_PARAMS
+}
+
+{
+  name = test_texture
+  type = TEXTURE_PARAMS
+
+  texture_size_x = 512
+  texture_size_y = 512
+
+//  heightmap_dist = 0.05
+
+  background_color_r = 255
+  background_color_g = 255
+  background_color_b = 255
+  background_color_a = 0
+}
+
+{
+  name = generator_launcher
+  type = GENERATOR_LAUNCHER
+
+  generator_mesh = forest_generator
+}

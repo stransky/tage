@@ -1,0 +1,101 @@
+{
+  name = land_pixel_point
+  type = MODIFICATOR_POINT_SINGLE
+
+  {
+    type = MODIFICATOR_POINT_OPBOX
+
+    height_delta = 0.02
+    pixel_height_final = pixel_height_final + height_delta*PARAM_PREV_0
+  }
+}
+
+{
+  name = rock_surface
+  type = MODIFICATOR_POINT_SINGLE
+
+  {
+    {
+      type = MODIFICATOR_POINT_OPBOX_INIT
+      
+      color_center_delta.r = rgb(200)
+      color_center_delta.g = rgb(200)
+      color_center_delta.b = rgb(200)
+      
+      color_base = color_center_delta*PARAM_RAND;
+    }
+    
+    type = MODIFICATOR_POINT_OPBOX
+
+    color_delta.r = rgb(70)
+    color_delta.g = rgb(70)
+    color_delta.b = rgb(70)
+    
+    pixel_color_final = color_base + color_delta*PARAM_RAND
+  }
+}
+
+{
+  name = land_rock
+  type = MODIFICATOR_BUNCH
+
+  lenght.min = 0.4
+  lenght.max = 0.6
+
+  corner_curvature.min = 0.2
+  corner_curvature.max = 0.6
+
+  angle = 0.01
+
+  modificator_slave = rock_surface
+  modificator_slave = land_pixel_point
+
+  coordinates_operation = ADD
+
+  {
+    type = MODIFICATOR_COORDINATE
+
+    index = 0
+
+    start.x = 0
+    start.y = 0
+
+    size.x = 40
+    size.y = 40
+  }
+}
+
+{
+  name = land_rock_rect
+  type = MODIFICATOR_RECT
+  pixel_step = 25
+  modificator_slave = land_rock
+}
+
+{
+  name = land_light
+  type = MODIFICATOR_LIGHT
+  position.x = -1
+  position.z = -1
+  color_specular_active = 1
+  specular_shine = 0.01
+}
+
+// Mesh generator
+{
+  name = forest_generator
+  type = GENERATOR_MESH
+
+  modificator = land_rock_rect
+  modificator_target = TEXTURE
+
+  modificator = land_light
+  modificator_target = TEXTURE
+}
+
+{
+  name = generator_launcher
+  type = GENERATOR_LAUNCHER
+
+  generator_mesh = forest_generator
+}

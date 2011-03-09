@@ -1,0 +1,38 @@
+// Target pixels
+{
+  name = grass_pixel_point
+  type = MODIFICATOR_POINT_SINGLE
+
+  {
+    type = MODIFICATOR_POINT_OPBOX
+
+    color_min = #b0b0b0
+    color_max = #ffff00
+
+    pixel_color_final = color_min + (color_max-color_min)*PARAM_RAND
+  }
+}
+
+// Rectangle modificator
+{
+  name = test_point
+  type = MODIFICATOR_POINT_EXTENDED
+  modificator_slave = grass_pixel_point
+}
+
+// A generator
+{
+  name = base_generator
+  type = GENERATOR_MESH
+
+  modificator = test_point
+  modificator_target = TEXTURE
+}
+
+// Whole generator launcher
+{
+  name = generator_launcher
+  type = GENERATOR_LAUNCHER
+
+  generator_mesh = base_generator
+}

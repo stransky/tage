@@ -1,0 +1,66 @@
+include materials.dat
+
+{
+  name = rect3
+//  type = MODIFICATOR_RECTANGLE
+  type = MODIFICATOR_FRACTAL
+
+  modificator_slave = rock_pixel_point
+
+  height_range_min = 0.5
+  height_range_max = 0.6
+
+  fractal_hurst = 0.2
+}
+
+// Mesh generator
+{
+  name = test_generator
+  type = GENERATOR_MESH
+
+  modificator = rect3
+  modificator_target = TEXTURE
+//  modificator_target = GEOMETRY
+  modificator_repeat = 1
+}
+
+// Test script
+{
+  name = test_mesh
+  type = MESH_PARAMS
+
+  bunch_slice_segments = 1
+  bunch_slice_segments = 1
+  bunch_slice_falling = 20
+
+  size_x = 20
+  size_z = 20
+
+//  mesh_type = MESH_BUNCH
+  mesh_type = MESH_LAND
+}
+
+{
+  name = test_material
+  type = MATERIAL_PARAMS
+  transparent = 1
+}
+
+{
+  name = test_texture
+  type = TEXTURE_PARAMS
+
+  texture_alpha = 0
+  texture_size_x = 512
+  texture_size_y = 512
+//  texture_size_x = 8192
+//  texture_size_y = 8192
+
+//  heightmap_dist = 0.1
+  heightmap_dist = 0.05
+
+  background_color_r = 255
+  background_color_g = 255
+  background_color_b = 255
+  background_color_a = 0
+}

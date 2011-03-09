@@ -1,0 +1,116 @@
+// Target pixels for grass
+{
+  name = land_pixel_point
+  type = MODIFICATOR_POINT_SINGLE
+
+  {
+    type = MODIFICATOR_POINT_SINGLE_HEIGHT
+
+    height_center = 0
+    height_delta = 0.005
+
+    height_operation = ADD
+    height_parameter = PARAM_PREV_0
+
+    final_operation = SET
+  }
+}
+
+{
+  name = rock_surface
+  type = MODIFICATOR_POINT_SINGLE
+
+  {
+    type = MODIFICATOR_POINT_SINGLE_COLOR
+
+    color_center_r = 100
+    color_center_g = 100
+    color_center_b = 100
+    color_center_scale = 0.3
+
+    color_delta_r = 70
+    color_delta_g = 70
+    color_delta_b = 70
+
+    color_center_delta_r = 200
+    color_center_delta_g = 200
+    color_center_delta_b = 200
+  }
+}
+
+{
+  name = land_rock
+  type = MODIFICATOR_BUNCH
+
+  lenght_min = 0.2
+  lenght_max = 0.5
+
+  corner_curvature_min = 0.2
+  corner_curvature_max = 0.5
+
+  angle = 0.1
+
+  modificator_slave = rock_surface
+  modificator_slave = land_pixel_point
+
+  coordinates_random = 1
+  coordinates_random_num = 20
+  coordinates_operation = ADD
+
+  {
+    type = MODIFICATOR_COORDINATE
+
+    index = 0
+
+    start_x = -40
+    start_y = -40
+
+    size_x = 40
+    size_y = 40
+  }
+
+  {
+    type = MODIFICATOR_COORDINATE
+
+    index = 1
+
+    start_x = 40
+    start_y = 40
+
+    size_x = 100
+    size_y = 100
+  }
+}
+
+{
+  name = land_rock_rect
+  type = MODIFICATOR_RECT
+  pixel_step = 40
+  modificator_slave = land_rock
+}
+
+{
+  name = land_light
+  type = MODIFICATOR_LIGHT
+  position_x = -1
+  position_z = -1
+}
+
+// Mesh generator
+{
+  name = forest_generator
+  type = GENERATOR_MESH
+
+  modificator = land_rock_rect
+  modificator_target = TEXTURE
+
+  modificator = land_light
+  modificator_target = TEXTURE
+}
+
+{
+  name = generator_launcher
+  type = GENERATOR_LAUNCHER
+
+  generator_mesh = forest_generator
+}

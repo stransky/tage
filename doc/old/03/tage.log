@@ -1,0 +1,112 @@
+This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=latex 2009.11.29)  17 JAN 2010 15:36
+entering extended mode
+ %&-line parsing enabled.
+**tage.tex
+(./tage.tex
+LaTeX2e <2005/12/01>
+Babel <v3.8h> and hyphenation patterns for english, usenglishmax, dumylang, noh
+yphenation, arabic, basque, bulgarian, coptic, welsh, czech, slovak, german, ng
+erman, danish, esperanto, spanish, catalan, galician, estonian, farsi, finnish,
+ french, greek, monogreek, ancientgreek, croatian, hungarian, interlingua, ibyc
+us, indonesian, icelandic, italian, latin, mongolian, dutch, norsk, polish, por
+tuguese, pinyin, romanian, russian, slovenian, uppersorbian, serbian, swedish, 
+turkish, ukenglish, ukrainian, loaded.
+(/usr/share/texmf/tex/latex/base/article.cls
+Document Class: article 2005/09/16 v1.4f Standard LaTeX document class
+(/usr/share/texmf/tex/latex/base/size11.clo
+File: size11.clo 2005/09/16 v1.4f Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+(/usr/share/texmf/tex/latex/ltxmisc/a4wide.sty
+Package: a4wide 1994/08/30
+
+(/usr/share/texmf/tex/latex/ntgclass/a4.sty
+Package: a4 2004/04/15 v1.2g A4 based page layout
+)) (./tage.aux)
+\openout1 = `tage.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+ [1
+
+] [2] [3] [4]
+[5] [6] [7] [8] [9] [10]
+Overfull \hbox (11.49258pt too wide) in paragraph at lines 577--577
+[]    \OT1/cmtt/m/n/10.95 Each basic setup may contain local coordinate setup. 
+It's defined by nested[] 
+ []
+
+[11]
+Overfull \hbox (17.24127pt too wide) in paragraph at lines 659--659
+[]      \OT1/cmtt/m/n/10.95 coordinates_operation. It can be top coordinates fr
+om previous modificator[] 
+ []
+
+
+Overfull \hbox (5.7439pt too wide) in paragraph at lines 659--659
+[]      \OT1/cmtt/m/n/10.95 (COORD_CURRENT) or result of last top and local coo
+rdinates composition:[] 
+ []
+
+
+Overfull \hbox (28.73865pt too wide) in paragraph at lines 659--659
+[]      \OT1/cmtt/m/n/10.95 COORD_LAST_START        - result of last coordinate
+ composition (start part)[] 
+ []
+
+
+Overfull \hbox (22.98996pt too wide) in paragraph at lines 659--659
+[]      \OT1/cmtt/m/n/10.95 COORD_LAST_SIZE         - result of last coordinate
+ composition (size part)[] 
+ []
+
+
+Overfull \hbox (63.23077pt too wide) in paragraph at lines 659--659
+[]      \OT1/cmtt/m/n/10.95 COORD_LAST_START_SIZE   - result of last coordinate
+ composition (start+size parts)[] 
+ []
+
+[12]
+Overfull \hbox (11.49258pt too wide) in paragraph at lines 659--659
+[]      \OT1/cmtt/m/n/10.95 [int]    index  - coordinate index (used by randomi
+zed local coordinates)[] 
+ []
+
+
+Overfull \hbox (1.21483pt too wide) in paragraph at lines 664--667
+\OT1/cmr/m/n/10.95 MODIFICATOR[]POINT[]SINGLE MOD-I-FI-CA-TOR[]POINT[]SINGLE[]C
+OLOR MOD-I-FI-CA-
+ []
+
+[13] [14] (./tage.aux) ) 
+Here is how much of TeX's memory you used:
+ 234 strings out of 256217
+ 2649 string characters out of 1917094
+ 52804 words of memory out of 1500000
+ 3593 multiletter control sequences out of 10000+200000
+ 5626 words of font info for 21 fonts, out of 1200000 for 2000
+ 645 hyphenation exceptions out of 8191
+ 22i,4n,19p,139b,241s stack positions out of 5000i,500n,6000p,200000b,15000s
+
+Output written on tage.dvi (14 pages, 22412 bytes).

@@ -1,0 +1,48 @@
+// generates a rectangle over whole texture with a randomize color
+
+// Target pixels
+{
+  name = pixel_point
+  type = MODIFICATOR_POINT_SINGLE
+
+  {
+    // MODIFICATOR_POINT_OPBOX_INIT box is called only once when a parent modificator 
+    // (MODIFICATOR_RECT in this case) is going to start generating the pixels.
+    // So we can set uniqe attributes for whole recatangle here.
+    {
+      type = MODIFICATOR_POINT_OPBOX_INIT
+      basic_color = #ff
+    }
+
+    // MODIFICATOR_POINT_OPBOX is called for each pixel in MODIFICATOR_RECT
+    // rectangle
+    type = MODIFICATOR_POINT_OPBOX
+
+    color_delta = #505050
+    pixel_color_final = basic_color+color_delta*PARAM_RAND
+  }
+}
+
+// Rectangle modificator
+{
+  name = test_rect
+  type = MODIFICATOR_RECT
+  modificator_slave = pixel_point
+}
+
+// A generator
+{
+  name = base_generator
+  type = GENERATOR_MESH
+
+  modificator = test_rect
+  modificator_target = TEXTURE
+}
+
+// Whole generator launcher
+{
+  name = generator_launcher
+  type = GENERATOR_LAUNCHER
+
+  generator_mesh = base_generator
+}
